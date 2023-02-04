@@ -22,8 +22,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235989, 0, 0 )
 cam = NodePath("../Camera")
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 15 )
 Player = NodePath("../Player")
-offset = Vector3( 0, 10, 10 )
+offset = Vector3( 0, 15, 15 )
 
 [node name="FloatingIsland" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.590859, 0.806775, 0, -0.806775, 0.590859, 81.8964, 0, 0 )
@@ -46,7 +47,7 @@ transform = Transform( -0.418977, 0.732549, -0.536498, 0, 0.590859, 0.806775, 0.
 [node name="FloatingIsland6" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.590859, 0.806775, 0, -0.806775, 0.590859, -24.0384, 44.0776, 22.834 )
 
-[node name="Sun" parent="." instance=ExtResource( 4 )]
+[node name="Sun" parent="." groups=["Sun"] instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -223.696, -3.96483, -3.55683 )
 
 [node name="CameraRotaterY" type="Spatial" parent="."]
@@ -56,6 +57,7 @@ script = ExtResource( 7 )
 
 [node name="Camera2" type="Camera" parent="CameraRotaterY/CameraRotaterX"]
 transform = Transform( 1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 186.367, 132.763 )
+current = true
 far = 1000.0
 
 [node name="HUD" type="Control" parent="."]
@@ -77,3 +79,6 @@ margin_top = 18.0
 margin_right = 62.0
 margin_bottom = 32.0
 text = "Mirrors: 0"
+
+[node name="MirrorCollectible" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36.7048 )

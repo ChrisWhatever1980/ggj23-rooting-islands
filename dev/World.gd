@@ -22,6 +22,8 @@ func _ready() -> void:
 		$FloatingIsland6
 	]
 	
+	$MirrorCollectible.Sun = $Sun
+	
 	var spawns = get_tree().get_nodes_in_group("Collectible_Spawns")
 	for s in range(0, spawns.size()):
 		match s % 2:
@@ -32,6 +34,7 @@ func _ready() -> void:
 			1:
 				var new_collectible = MirrorCollectibleScene.instance()
 				new_collectible.translation = spawns[s].global_translation
+				new_collectible.Sun = $Sun
 				add_child(new_collectible)
 
 
