@@ -3,6 +3,7 @@ extends Node
 
 signal update_mirror
 signal update_water
+signal deploy_mirror
 
 
 func connect(_signal: String, target: Object, method: String, binds: Array = [  ], flags: int = 0):

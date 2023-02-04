@@ -24,8 +24,8 @@ cam = NodePath("../Camera")
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 15 )
-Player = NodePath("../Player")
-offset = Vector3( 0, 15, 15 )
+Target = NodePath("../Player")
+offset = Vector3( 0, 5, 15 )
 
 [node name="Sun" parent="." groups=["Sun"] instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -223.696, -3.96483, -3.55683 )
@@ -37,7 +37,6 @@ script = ExtResource( 7 )
 
 [node name="Camera2" type="Camera" parent="CameraRotaterY/CameraRotaterX"]
 transform = Transform( 1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 186.367, 132.763 )
-current = true
 far = 1000.0
 
 [node name="HUD" type="Control" parent="."]

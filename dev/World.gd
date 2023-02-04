@@ -8,12 +8,15 @@ export(PackedScene) var MirrorCollectibleScene
 
 var islands = []
 onready var debug_camera = $CameraRotaterY/CameraRotaterX/Camera2
+var deployed_mirror = null
 
 
 func _ready() -> void:
 	randomize()
 
 	$MirrorCollectible.Sun = $Sun
+	
+	GameEvents.connect("deploy_mirror", self, "deploy_mirror")
 	
 	var spawns = get_tree().get_nodes_in_group("Collectible_Spawns")
 	for s in range(0, spawns.size()):
@@ -29,6 +32,23 @@ func _ready() -> void:
 				add_child(new_collectible)
 
 
+func deploy_mirror(pos, target):
+	var mirror = MirrorCollectibleScene.instance()
+	mirror.translation = pos
+	mirror.target = target
+	mirror.collectable = false
+	add_child(mirror)
+	$Camera.Target = mirror
+	deployed_mirror = mirror
+
+
+func abort_deploy():
+	deployed_mirror.queue_free()
+	deployed_mirror = null
+	$Player.abort_deploy()
+	$Camera.Target = $Player
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_camera"):
@@ -37,6 +57,23 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("spawn_root"):
 		islands[randi() % islands.size()]
 		spawn_root(islands[rand_range(0, islands.size())], islands[rand_range(0, islands.size())])
+
+	if deployed_mirror:
+		var x_axis = deployed_mirror.transform.basis.x
+		if Input.is_action_pressed("rightstick_forward"):
+			deployed_mirror.rotate(x_axis, delta)
+
+		if Input.is_action_pressed("rightstick_backward"):
+			deployed_mirror.rotate(x_axis, -delta)
+
+		if Input.is_action_pressed("rightstick_left"):
+			deployed_mirror.rotate_y(-delta)
+
+		if Input.is_action_pressed("rightstick_right"):
+			deployed_mirror.rotate_y(delta)
+			
+		if Input.is_action_just_pressed("abort_deploy"):
+			abort_deploy()
 
 
 func spawn_root(island0, island1):
