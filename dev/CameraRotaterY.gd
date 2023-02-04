@@ -12,8 +12,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _unhandled_input(event: InputEvent) -> void:
 
-#	if Input.is_action_just_pressed("quit"):
-#		get_tree().quit()
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 
 	if event is InputEventMouseMotion:
 		mouse_move = event.relative
