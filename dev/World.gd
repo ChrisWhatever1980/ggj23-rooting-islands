@@ -12,16 +12,7 @@ onready var debug_camera = $CameraRotaterY/CameraRotaterX/Camera2
 
 func _ready() -> void:
 	randomize()
-	islands = [
-		$FloatingIsland,
-		$FloatingIsland2,
-		$FloatingIsland7,
-		$FloatingIsland3,
-		$FloatingIsland4,
-		$FloatingIsland5,
-		$FloatingIsland6
-	]
-	
+
 	$MirrorCollectible.Sun = $Sun
 	
 	var spawns = get_tree().get_nodes_in_group("Collectible_Spawns")

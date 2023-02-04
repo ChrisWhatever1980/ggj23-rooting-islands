@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MirrorCollectible.gd" type="Script" id=1]
+[ext_resource path="res://models/mirror_collectible.glb" type="PackedScene" id=2]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -20,14 +21,19 @@ Spotlight = NodePath("SpotLight")
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 2 )
+
+[node name="mirror_collectible" parent="." instance=ExtResource( 2 )]
 
 [node name="SpotlightShine" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+visible = false
 mesh = SubResource( 3 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+visible = false
 light_color = Color( 0.972549, 0.929412, 0.635294, 1 )
 light_energy = 16.0
 spot_range = 200.0

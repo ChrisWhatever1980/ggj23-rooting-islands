@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://models/gyrocopter.glb" type="PackedScene" id=1]
 [ext_resource path="res://addons/kenney_particle_pack/smoke_08.png" type="Texture" id=2]
 [ext_resource path="res://gyrocopterAnimation.tres" type="Animation" id=3]
 [ext_resource path="res://gyrocopter_model.gd" type="Script" id=4]
+[ext_resource path="res://models/mirror_collectible.glb" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=24]
 flags_transparent = true
@@ -52,11 +53,11 @@ material = SubResource( 23 )
 script = ExtResource( 4 )
 
 [node name="WaterTank" parent="." index="6"]
-transform = Transform( 0.486492, 0.0223282, 0.556904, 6.88857e-10, 0.999561, -0.021925, -0.557148, 0.0194966, 0.486279, -0.0475276, 1.07621, -0.317458 )
+transform = Transform( 0.486493, 0.00761163, 0.55712, 0, 0.999949, -0.0074742, -0.557148, 0.00664634, 0.486468, -0.0475276, 1.07621, -0.317458 )
 material/0 = SubResource( 24 )
 
 [node name="WaterLevelScale" type="Spatial" parent="WaterTank" index="0"]
-transform = Transform( 1, -1.30104e-17, -5.96046e-08, 0, 0.75, -2.91038e-10, 5.96046e-08, 2.18279e-10, 1, -0.000965118, -0.90162, -0.766071 )
+transform = Transform( 1, 0, -5.96046e-08, 0, 0, -2.91038e-10, 5.96046e-08, 0, 1, -0.000965118, -0.90162, -0.766071 )
 
 [node name="WaterLevel" type="MeshInstance" parent="WaterTank/WaterLevelScale" index="0"]
 transform = Transform( 0.9, -1.74623e-10, -5.96046e-08, 0, 0.9, 7.27596e-11, -5.96046e-08, -2.03727e-10, 0.9, -0.0403762, 0.90129, -0.040004 )
@@ -64,16 +65,16 @@ mesh = SubResource( 25 )
 skeleton = NodePath("../..")
 
 [node name="TopRotor" parent="." index="7"]
-transform = Transform( 3.57538, 0, -0.0541123, 0, 0.0251366, 0, 2.37851, 0, 0.0813418, -0.116963, 4.28839, -0.0101452 )
+transform = Transform( -4.22535, 0, 0.0174313, 0, 0.0251366, 0, -0.766195, 0, -0.0961289, -0.116963, 4.28839, -0.0101452 )
 
 [node name="LeftStabilizer" parent="." index="9"]
-transform = Transform( 1.19755, -0.0946307, 0, 0.140073, 0.809045, 0, 0, 0, -0.814561, -3.07121, 0.124103, -0.488559 )
+transform = Transform( 1.20422, 0.0405416, 0, -0.0600098, 0.813551, 0, 0, 0, -0.814561, -3.07121, 0.124103, -0.488559 )
 
 [node name="Motor" parent="." index="11"]
-transform = Transform( 0.976179, -0.129966, -0.173735, 0.174673, -0.00423813, 0.984618, -0.128703, -0.991509, 0.0185644, -1.06416, 2.65402, -0.102102 )
+transform = Transform( 0.976179, -0.129966, -0.173735, 0.174673, -0.00423777, 0.984617, -0.128703, -0.991509, 0.0185647, -1.06416, 2.63448, -0.102102 )
 
 [node name="Exhaust" parent="." index="12"]
-transform = Transform( 8.8914e-09, 0.214508, 0.0108223, -0.0745865, 2.58449e-08, 1.11142e-09, 5.55712e-10, -0.0314575, 0.0737971, -0.541062, 3.13145, -0.546712 )
+transform = Transform( 0, 0.214508, 0.0108223, -0.0745865, 0, 1.11142e-09, 5.55712e-10, -0.0314575, 0.0737971, -0.541062, 3.10047, -0.546712 )
 
 [node name="Particles" type="Particles" parent="Exhaust/ExhaustPort" index="0"]
 amount = 20
@@ -84,23 +85,43 @@ process_material = SubResource( 28 )
 draw_pass_1 = SubResource( 29 )
 
 [node name="TopGear1" parent="." index="14"]
-transform = Transform( 0.339708, 0.0789949, 0.225989, 0.230186, -4.95419e-08, -0.346017, -0.0657708, 0.408011, -0.0437538, -0.0523701, 3.72304, 0.272905 )
+transform = Transform( -0.401464, 0.0789949, -0.0727986, -0.0741504, 0, 0.408919, 0.0777273, 0.408011, 0.0140945, -0.0523701, 3.72304, 0.272905 )
 
 [node name="BackGear2" parent="." index="16"]
-transform = Transform( 0.343796, 0.0470063, 0.228709, 0.230186, 0, -0.346017, -0.0391373, 0.412921, -0.0260359, -1.62208, 2.13825, 0.431893 )
+transform = Transform( -0.406295, 0.0470063, -0.0736746, -0.0741504, 9.90838e-08, 0.408919, 0.046252, 0.412921, 0.00838692, -1.62208, 2.13825, 0.431893 )
 
 [node name="Cube020" parent="." index="21"]
-transform = Transform( 0.133716, 0, -0.00846213, 0, 0.137459, 0, 0.031857, 0, 0.0355188, 3.44282, -0.122858, -0.00391411 )
+transform = Transform( 0.137403, 0, 0.00103923, 0, 0.137459, 0, -0.00391235, 0, 0.0364981, 3.44282, -0.122858, -0.00391411 )
 
 [node name="BackRotor" parent="Empty" index="0"]
-transform = Transform( -0.0383096, 0.00560886, 0.00208021, -0.370279, -0.000580301, 0.0201061, -0.888481, 1.68049e-10, -0.00846901, -0.0012815, -0.0184255, 0.0267408 )
+transform = Transform( -0.0928249, 0.00560886, 0.000791922, -0.897191, -0.000580301, 0.00765426, -0.338239, 0, -0.0205205, -0.0012815, -0.0184255, 0.0267408 )
 
 [node name="Rope" parent="." index="36"]
-transform = Transform( 0.486492, 0.0223282, 0.556904, 6.88857e-10, 0.999561, -0.021925, -0.557148, 0.0194966, 0.486279, -0.0475276, 1.07621, -0.317458 )
+transform = Transform( 0.486493, 0.00761163, 0.55712, 0, 0.999949, -0.0074742, -0.557148, 0.00664634, 0.486468, -0.0475276, 1.07621, -0.317458 )
 
 [node name="WaterTank002" parent="." index="37"]
-transform = Transform( 0.486492, 0.0223282, 0.556904, 6.88857e-10, 0.999561, -0.021925, -0.557148, 0.0194966, 0.486279, -0.0475276, 1.07621, -0.317458 )
+transform = Transform( 0.486493, 0.00761163, 0.55712, 0, 0.999949, -0.0074742, -0.557148, 0.00664634, 0.486468, -0.0475276, 1.07621, -0.317458 )
 
 [node name="AnimationPlayer" parent="." index="38"]
 autoplay = "gyrocopterAnimation"
 anims/gyrocopterAnimation = ExtResource( 3 )
+
+[node name="mirror_collectible0" parent="." index="39" instance=ExtResource( 5 )]
+transform = Transform( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, 0.351738, 1.15691, 0.924658 )
+visible = false
+
+[node name="mirror_collectible1" parent="." index="40" instance=ExtResource( 5 )]
+transform = Transform( -8.54989e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, 0.173651, 1.15215, 1.09387 )
+visible = false
+
+[node name="mirror_collectible2" parent="." index="41" instance=ExtResource( 5 )]
+transform = Transform( -8.54987e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.0130281, 1.15215, 1.24327 )
+visible = false
+
+[node name="mirror_collectible3" parent="." index="42" instance=ExtResource( 5 )]
+transform = Transform( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.108579, 1.15215, 1.41328 )
+visible = false
+
+[node name="mirror_collectible4" parent="." index="43" instance=ExtResource( 5 )]
+transform = Transform( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.193862, 1.15215, 1.58724 )
+visible = false

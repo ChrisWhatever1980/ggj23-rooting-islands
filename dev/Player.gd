@@ -47,20 +47,9 @@ func _process(delta: float) -> void:
 
 	if velocity.length_squared() > 0.0:
 		print("Velocity: " + str(velocity.length_squared()))
-		Gyrocopter.look_at(translation + velocity, Vector3.UP)
+		Gyrocopter.look_at(translation + 10 * velocity, Vector3.UP)
 
 	move_and_slide(velocity)
-
-
-func set_mirror_amount(amount):
-#	for m in range(0, 5):
-#		get_node("MirrorHolder/Mirror" + str(m)).visible = m <= amount
-	GameEvents.emit_signal("update_mirror", amount)
-
-
-func set_water_level(level):
-#	Gauge.scale.z = level / 100.0
-	GameEvents.emit_signal("update_water", level / 100.0)
 
 
 func _on_Area_entered(area: Area) -> void:
@@ -75,10 +64,11 @@ func _on_Area_entered(area: Area) -> void:
 func give_water():
 	Water += 5 + randi() % 5
 	Water = clamp(Water, 0, 100)
-	set_water_level(Water)
+	GameEvents.emit_signal("update_water", Water / 100.0)
 
 
 func give_mirror():
 	Mirrors += 1
-	Mirrors = clamp(Water, 0, 5)
-	set_mirror_amount(Mirrors)
+	print("Mirrors: " + str(Mirrors))
+	Mirrors = clamp(Mirrors, 0, 5)
+	GameEvents.emit_signal("update_mirror", Mirrors)
