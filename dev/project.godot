@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="Ggj 23 -rooting-islands"
-run/main_scene="res://StartMenu.tscn"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 GameEvents="*res://game_events.gd"
+Globals="*res://Globals.gd"
 
 [display]
 
