@@ -8,7 +8,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_focus_mode(true)
+	self.grab_focus()
 	self.connect("pressed", self, "on_pressed")
 	pass # Replace with function body.
 
