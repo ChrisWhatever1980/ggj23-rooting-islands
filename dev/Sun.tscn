@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Sun" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -222.928, 0, -5.28088 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.8817, 0, 0 )
+light_color = Color( 0.945098, 0.933333, 0.741176, 1 )
+light_energy = 6.579
+light_specular = 0.0
+shadow_enabled = true
+shadow_color = Color( 0.321569, 0.321569, 0.321569, 1 )
+shadow_bias = 10.0
+shadow_reverse_cull_face = true
+omni_range = 447.518
+omni_attenuation = 1.27456
+omni_shadow_mode = 0

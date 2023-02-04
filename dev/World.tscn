@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://FloatingIsland.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World.gd" type="Script" id=5]
+[ext_resource path="res://Root.tscn" type="PackedScene" id=6]
+[ext_resource path="res://CameraRotaterY.gd" type="Script" id=7]
+[ext_resource path="res://WaterCollectible.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MirrorCollectible.tscn" type="PackedScene" id=9]
+[ext_resource path="res://HUD.gd" type="Script" id=10]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 5 )
+RootScene = ExtResource( 6 )
+WaterCollectibleScene = ExtResource( 8 )
+MirrorCollectibleScene = ExtResource( 9 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235989, 0, 0 )
+cam = NodePath("../Camera")
+
+[node name="Camera" parent="." instance=ExtResource( 2 )]
+Player = NodePath("../Player")
+offset = Vector3( 0, 10, 10 )
+
+[node name="FloatingIsland" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.590859, 0.806775, 0, -0.806775, 0.590859, 81.8964, 0, 0 )
+
+[node name="FloatingIsland2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -0.93744, 0.348147, 0, -0.348147, -0.93744, 52.6935, 0, -87.239 )
+
+[node name="FloatingIsland7" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.685602, -0.340821, 0.643265, -0.727976, 0.320983, -0.605822, 0, -0.883635, -0.468177, 52.6935, -85.0214, -22.1369 )
+
+[node name="FloatingIsland3" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.425795, 0.534621, 0.729986, -0.90482, -0.251585, -0.343521, 0, -0.806775, 0.590859, -35.9887, 0, -69.4134 )
+
+[node name="FloatingIsland4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.695762, 0.294688, 0.655037, 0, -0.911963, 0.410273, 0.718272, -0.285453, -0.634509, 18.8249, 0, 71.4087 )
+
+[node name="FloatingIsland5" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.418977, 0.732549, -0.536498, 0, 0.590859, 0.806775, 0.907997, 0.33802, -0.247556, -88.1286, 0, 17.0883 )
+
+[node name="FloatingIsland6" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.590859, 0.806775, 0, -0.806775, 0.590859, -24.0384, 44.0776, 22.834 )
+
+[node name="Sun" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -223.696, -3.96483, -3.55683 )
+
+[node name="CameraRotaterY" type="Spatial" parent="."]
+script = ExtResource( 7 )
+
+[node name="CameraRotaterX" type="Spatial" parent="CameraRotaterY"]
+
+[node name="Camera2" type="Camera" parent="CameraRotaterY/CameraRotaterX"]
+transform = Transform( 1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 186.367, 132.763 )
+far = 1000.0
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchor_bottom = 1.0
+margin_right = 34.0
+
+[node name="WaterLabel" type="Label" parent="HUD/VBoxContainer"]
+margin_right = 62.0
+margin_bottom = 14.0
+text = "Water: 0"
+
+[node name="MirrorsLabel" type="Label" parent="HUD/VBoxContainer"]
+margin_top = 18.0
+margin_right = 62.0
+margin_bottom = 32.0
+text = "Mirrors: 0"
