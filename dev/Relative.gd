@@ -1,6 +1,9 @@
 extends Spatial
 
 
+var waves = 3
+
+
 func _ready() -> void:
 	GameEvents.connect("relative_wave", self, "wave")
 	GameEvents.connect("relative_idle", self, "idle")
@@ -21,4 +24,10 @@ func walk():
 
 
 func wave():
+	yield(get_tree().create_timer(randf() * 0.5), "timeout")
 	$AnimationPlayer.play("wave")
+	
+	yield(get_tree().create_timer(1.0 + randf() * 2.0), "timeout")
+	waves -= 1
+	if waves > 0:
+		wave()
