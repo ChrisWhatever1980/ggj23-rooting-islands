@@ -86,9 +86,6 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("abort_deploy"):
 			abort_deploy()
 
-	if Input.is_action_just_pressed("trigger_happy_end"):
-		GameEvents.emit_signal("show_happy_end")
-
 #	if Input.is_action_just_pressed("spawn_root"):
 #		spawn_root(null, Vector3(75.920403, 29.684401, 46.6586), Vector3(53.641254, 0, -20.974489), null)
 
@@ -105,14 +102,14 @@ func spawn_root(root_seed, pos, target, target_island):
 
 
 func _input(event):
-	if event is InputEventKey and  event.scancode == KEY_P:
+	if event is InputEventKey and event.scancode == KEY_P:
 		$Menu.visible = true;
+		Globals.set_is_start_menu(false)
 		$AnimationPlayer.play("MenuFadeIn")
 		yield ($AnimationPlayer, "animation_finished")
 		get_tree().paused = true
-		pass
 
-	
+
 func on_start_menu_closed():
 	#$AnimationPlayer.connect("animation_finished", self, "after_menu_fade_out_animation")
 	$AnimationPlayer.play("MenuFadeOut")

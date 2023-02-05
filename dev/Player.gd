@@ -34,12 +34,14 @@ func _ready() -> void:
 
 
 func relative_found():
-	relatives_found += 1
+	if relatives_found < 6:
+		relatives_found += 1
 
-	if relatives_found >= 6:
-		# Happy End
-		GameEvents.emit_signal("show_happy_end")
-		unlock_electric_gyrocopter()
+		if relatives_found >= 6:
+			# Happy End
+			GameEvents.emit_signal("show_happy_end")
+			yield(get_tree().create_timer(2.0), "timeout")
+			unlock_electric_gyrocopter()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -117,6 +119,11 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("unlock_electric_gyrocopter"):
 			unlock_electric_gyrocopter()
 
+		if Input.is_action_just_pressed("trigger_happy_end"):
+			relatives_found = 5
+			relative_found()
+			#GameEvents.emit_signal("show_happy_end")
+
 		if Input.is_action_pressed("turbo"):
 			turbo = true
 		else:
@@ -133,25 +140,28 @@ func _process(delta: float) -> void:
 		var look_direction = velocity
 		look_direction.y = 0.0
 		look_direction = look_direction.normalized()
-		Gyrocopter.look_at(translation + 10 * look_direction, Vector3.UP)
+		if look_direction.length_squared() > 0.0:
+			Gyrocopter.look_at(translation + 10 * look_direction, Vector3.UP)
 
 	move_and_slide(velocity)
 
 
 func unlock_electric_gyrocopter():
+	
+	print("UNLOCK NOW")
 	if electric_gyrocopter_unlocked:
 		return
 
 	electric_gyrocopter_unlocked = true
-	GameEvents.emit_signal("fade_out")
-	yield(get_tree().create_timer(1.0), "timeout")
+	#GameEvents.emit_signal("fade_out")
+	#yield(get_tree().create_timer(1.0), "timeout")
 	motor_sound.stop()
 	blades_sound.playing = true
 	$GyrocopterRotate/electric_gyrocopter.visible = true
 	$GyrocopterRotate/Gyrocopter.visible = false
 	$GyrocopterRotate/old_gyrocopter.visible = false
-	yield(get_tree().create_timer(1.0), "timeout")
-	GameEvents.emit_signal("fade_in")
+	#yield(get_tree().create_timer(1.0), "timeout")
+	#GameEvents.emit_signal("fade_in")
 	GameEvents.emit_signal("show_message", "NEW_RIDE_MSG", false)
 
 
