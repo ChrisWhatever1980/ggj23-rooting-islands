@@ -49,6 +49,8 @@ func _physics_process(delta):
 	$ImmediateGeometry.reflected = global_translation + 5.0 * mirror_dir
 	$ImmediateGeometry.normal = -global_transform.basis.z
 
-	if Reflection and light_on:
+	if Reflection:
+		Reflection.visible = light_on
 		#Reflection.set_enabled(light_on)
 		mirror_mat.emission_enabled = light_on
+	

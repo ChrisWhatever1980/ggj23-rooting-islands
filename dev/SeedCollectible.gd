@@ -12,6 +12,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 
+	if growing:
+		return
+
 	# raycast to sun and mirrors
 	var light_check = false
 
@@ -63,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			light_hits_seed = true	# from the sun
 		
-		if light_hits_seed and !growing:
+		if light_hits_seed:
 			print("Valid " + self.name + " sprouts: " + water.name + ", " + light.name)
 			GameEvents.emit_signal("spawn_root", self, translation, water_pos, water.target_island)
 			growing = true

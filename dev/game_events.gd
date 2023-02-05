@@ -10,6 +10,7 @@ signal spawn_root
 signal relative_found
 signal switch_to_player_cam
 signal switch_to_relative_cam
+signal show_message
 
 
 func connect(_signal: String, target: Object, method: String, binds: Array = [  ], flags: int = 0):

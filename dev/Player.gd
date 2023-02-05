@@ -13,12 +13,15 @@ var lerp_velocity_speed = 10.0
 var water_gauge_mat
 var deploying_mirror = false
 var can_fire_water = true
-var relatives_found = 0
 var nearby_collectibale = null
 
+var electric_gyrocopter_unlocked = false
+
+var relatives_found = 0
 
 onready var Gyrocopter = $GyrocopterRotate
 onready var motor_sound = $MotorSound
+onready var blades_sound = $BladesSound
 
 
 var Water = 0
@@ -31,7 +34,10 @@ func _ready() -> void:
 
 func relative_found():
 	relatives_found += 1
-	# TODO: show an old family foto and a message
+
+	if relatives_found >= 6:
+		# Happy End
+		unlock_electric_gyrocopter()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,21 +93,27 @@ func _process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed("gas_gyrocopter"):
 			motor_sound.playing = true
+			blades_sound.stop()
 			$GyrocopterRotate/electric_gyrocopter.visible = false
 			$GyrocopterRotate/Gyrocopter.visible = true
 			$GyrocopterRotate/old_gyrocopter.visible = false
 			
 		if Input.is_action_just_pressed("electric_gyrocopter"):
 			motor_sound.stop()
+			blades_sound.playing = true
 			$GyrocopterRotate/electric_gyrocopter.visible = true
 			$GyrocopterRotate/Gyrocopter.visible = false
 			$GyrocopterRotate/old_gyrocopter.visible = false
 			
 		if Input.is_action_just_pressed("old_gyrocopter"):
 			motor_sound.stop()
+			blades_sound.stop()
 			$GyrocopterRotate/electric_gyrocopter.visible = false
 			$GyrocopterRotate/Gyrocopter.visible = false
 			$GyrocopterRotate/old_gyrocopter.visible = true
+		
+		if Input.is_action_just_pressed("unlock_electric_gyrocopter"):
+			unlock_electric_gyrocopter()
 
 		if Input.is_action_pressed("turbo"):
 			turbo = true
@@ -113,6 +125,7 @@ func _process(delta: float) -> void:
 	velocity = lerp(velocity, (4.0 if turbo else 1.0) * target_velocity, 0.03)
 
 	motor_sound.pitch_scale = 1.0 + velocity.length() / 10.0
+	blades_sound.pitch_scale = 1.0 + velocity.length() / 10.0
 
 	if velocity.length_squared() > 0.0:
 		var look_direction = velocity
@@ -124,13 +137,20 @@ func _process(delta: float) -> void:
 
 
 func unlock_electric_gyrocopter():
+	if electric_gyrocopter_unlocked:
+		return
+
+	electric_gyrocopter_unlocked = true
 	GameEvents.emit_signal("fade_out")
+	yield(get_tree().create_timer(1.0), "timeout")
 	motor_sound.stop()
+	blades_sound.playing = true
 	$GyrocopterRotate/electric_gyrocopter.visible = true
 	$GyrocopterRotate/Gyrocopter.visible = false
 	$GyrocopterRotate/old_gyrocopter.visible = false
 	yield(get_tree().create_timer(1.0), "timeout")
 	GameEvents.emit_signal("fade_in")
+	GameEvents.emit_signal("show_message", "NEW_RIDE_MSG", false)
 
 
 func deploy_mirror():

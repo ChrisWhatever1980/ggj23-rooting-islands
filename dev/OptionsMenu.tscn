@@ -76,7 +76,6 @@ flat = true
 script = ExtResource( 5 )
 
 [node name="SwapMovementStick" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
-margin_left = 97.0
 margin_top = 179.0
 margin_right = 316.0
 margin_bottom = 203.0

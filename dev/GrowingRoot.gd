@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 		$roots.scale.x = target_length / 7.0
 
 		growing_root_mat.set_shader_param("grow", grow)
-		$roots.translation.z = lerp(target_length, 0.0, grow)
+		$roots.translation.z = lerp(target_length * 0.9, 0.0, grow)
 
 		var cam_target = lerp(translation, grow_target, 0.5)
 		RootCamera.translation = lerp(translation, cam_target, grow) + Vector3(20, 0, -20)
@@ -74,9 +74,9 @@ func _process(delta: float) -> void:
 		if grow >= 1.0:
 			stopped = true
 
-			#GameEvents.emit_signal("fade_out")
+			GameEvents.emit_signal("fade_out")
 
-			#yield(get_tree().create_timer(1.0), "timeout")
+			yield(get_tree().create_timer(1.0), "timeout")
 
-			#GameEvents.emit_signal("switch_to_relative_cam", target_island)
+			GameEvents.emit_signal("switch_to_relative_cam", target_island)
 

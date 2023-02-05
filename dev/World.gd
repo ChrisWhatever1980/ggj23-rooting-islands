@@ -91,13 +91,14 @@ func _process(delta: float) -> void:
 
 func spawn_root(root_seed, pos, target, target_island):
 
-	if root_seed:
-		root_seed.queue_free()
+	# finished with the mirror
+	abort_deploy()
 
 	var new_root = RootScene.instance()
 	new_root.RootCamera = $RootCamera
 	add_child(new_root)
 	new_root.start_grow(pos, target, target_island)
+
 
 func _input(event):
 	if event is InputEventKey and  event.scancode == KEY_P:
@@ -105,7 +106,7 @@ func _input(event):
 		$AnimationPlayer.play("MenuFadeIn")
 		yield ($AnimationPlayer, "animation_finished")
 		get_tree().paused = true
-		pass 
+		pass
 
 	
 func on_start_menu_closed():
@@ -113,6 +114,16 @@ func on_start_menu_closed():
 	$AnimationPlayer.play("MenuFadeOut")
 
 	yield ($AnimationPlayer, "animation_finished")
+
+	# start things for ingame
+	# change camera
+	GameEvents.emit_signal("switch_to_player_cam")
+	# start engine
+	if $Player.electric_gyrocopter_unlocked:
+		$Player.blades_sound.play()
+	else:
+		$Player.motor_sound.play()
+
 
 	$Menu.visible = false
 	var StartButton = $Menu.get_node("ColorRect/StartMenu/CenterContainer/VBoxContainer/StartGame")
