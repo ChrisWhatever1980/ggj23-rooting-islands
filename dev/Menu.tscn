@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ui.theme" type="Theme" id=1]
 [ext_resource path="res://StartMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://OptionsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://CreditsMenu.tscn" type="PackedScene" id=4]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -17,3 +18,5 @@ color = Color( 0.164706, 0.164706, 0.164706, 0.698039 )
 [node name="StartMenu" parent="ColorRect" instance=ExtResource( 2 )]
 
 [node name="OptionsMenu" parent="ColorRect" instance=ExtResource( 3 )]
+
+[node name="CreditsMenu" parent="ColorRect" instance=ExtResource( 4 )]
