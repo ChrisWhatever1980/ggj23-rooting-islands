@@ -37,6 +37,7 @@ func relative_found():
 
 	if relatives_found >= 6:
 		# Happy End
+		GameEvents.emit_signal("show_happy_end")
 		unlock_electric_gyrocopter()
 
 

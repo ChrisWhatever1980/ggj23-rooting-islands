@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://MessageBox.gd" type="Script" id=15]
 [ext_resource path="res://music/music.mp3" type="AudioStream" id=16]
 [ext_resource path="res://DefaultEnvironment.tres" type="Environment" id=17]
+[ext_resource path="res://Relative.tscn" type="PackedScene" id=18]
+[ext_resource path="res://HappyEnd.gd" type="Script" id=19]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -350,3 +352,38 @@ far = 1000.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 17 )
+
+[node name="HappyEnd" type="Spatial" parent="."]
+transform = Transform( 0.0580693, 0, -0.998313, 0, 1, 0, 0.998313, 0, 0.0580693, 181.72, 0, 0 )
+visible = false
+script = ExtResource( 19 )
+
+[node name="floating_island" parent="HappyEnd" instance=ExtResource( 3 )]
+
+[node name="Relative1" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 0, 14.9059, 4.8129 )
+
+[node name="Relative2" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 3.30608, 13.7513, 4.81287 )
+
+[node name="Relative3" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -4.18124, 15.1766, 4.81287 )
+
+[node name="Relative4" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -2.24249, 13.6907, 7.724 )
+
+[node name="Relative7" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -2.44601, 15.3627, 3.42322 )
+
+[node name="Relative8" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -0.507261, 15.0585, 6.33435 )
+
+[node name="Relative5" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 1.67368, 13.6884, 7.724 )
+
+[node name="Relative6" parent="HappyEnd" instance=ExtResource( 18 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 2.8647, 14.6455, 3.09747 )
+
+[node name="HappyEndCamera" type="Camera" parent="HappyEnd"]
+transform = Transform( -1, 3.55271e-15, -8.74228e-08, -4.78938e-08, 0.836583, 0.547841, 7.31364e-08, 0.547841, -0.836583, 0, 32.5734, -16.0357 )
+far = 1000.0

@@ -11,6 +11,9 @@ signal relative_found
 signal switch_to_player_cam
 signal switch_to_relative_cam
 signal show_message
+signal relative_wave
+signal relative_idle
+signal show_happy_end
 
 
 func connect(_signal: String, target: Object, method: String, binds: Array = [  ], flags: int = 0):

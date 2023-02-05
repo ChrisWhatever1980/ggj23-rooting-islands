@@ -85,8 +85,11 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("abort_deploy"):
 			abort_deploy()
 
-	if Input.is_action_just_pressed("spawn_root"):
-		spawn_root(null, Vector3(75.920403, 29.684401, 46.6586), Vector3(53.641254, 0, -20.974489), null)
+	if Input.is_action_just_pressed("trigger_happy_end"):
+		GameEvents.emit_signal("show_happy_end")
+
+#	if Input.is_action_just_pressed("spawn_root"):
+#		spawn_root(null, Vector3(75.920403, 29.684401, 46.6586), Vector3(53.641254, 0, -20.974489), null)
 
 
 func spawn_root(root_seed, pos, target, target_island):
