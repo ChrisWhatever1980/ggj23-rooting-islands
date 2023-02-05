@@ -17,7 +17,7 @@ func _ready() -> void:
 	Globals.connect("start_menu_closed", self, "on_start_menu_closed")
 	
 	GameEvents.connect("deploy_mirror", self, "deploy_mirror")
-	
+
 	var spawns = get_tree().get_nodes_in_group("Collectible_Spawns")
 	for s in range(0, spawns.size()):
 		match s % 2:
@@ -86,7 +86,7 @@ func spawn_root(island0, island1):
 
 func _input(event):
 	if event is InputEventKey and  event.scancode == KEY_P:
-		$StartMenu.visible = true;
+		$Menu.visible = true;
 		$AnimationPlayer.play("MenuFadeIn")
 		yield ($AnimationPlayer, "animation_finished")
 		get_tree().paused = true
@@ -99,7 +99,7 @@ func on_start_menu_closed():
 
 	yield ($AnimationPlayer, "animation_finished")
 
-	$StartMenu.visible = false
-	var StartButton = $StartMenu.get_node("ColorRect/CenterContainer/VBoxContainer/StartGame")
+	$Menu.visible = false
+	var StartButton = $Menu.get_node("ColorRect/StartMenu/CenterContainer/VBoxContainer/StartGame")
 	StartButton.text = 'Continue'
 	pass

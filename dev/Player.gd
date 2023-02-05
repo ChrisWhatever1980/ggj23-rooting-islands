@@ -25,18 +25,26 @@ func _process(delta: float) -> void:
 	var cam_forward = cam.get_camera_forward()
 
 	var target_velocity = Vector3.ZERO
+	
+	var stick_position := "right"
+	var forward_action := "forward"
+	var backward_action := "backward"
+	if Globals.is_movement_stick_swapped:
+		stick_position = "left"
+		forward_action = "up"
+		backward_action = "down"
 
 	if !deploying_mirror:
-		if Input.is_action_pressed("rightstick_forward"):
+		if Input.is_action_pressed(stick_position + "stick_" + forward_action):
 			target_velocity = cam_forward * speed
 
-		if Input.is_action_pressed("rightstick_backward"):
+		if Input.is_action_pressed(stick_position + "stick_" + backward_action):
 			target_velocity = -cam_forward * speed
 
-		if Input.is_action_pressed("rightstick_left"):
+		if Input.is_action_pressed(stick_position + "stick_left"):
 			target_velocity = -cam_forward.cross(Vector3.UP) * speed
 
-		if Input.is_action_pressed("rightstick_right"):
+		if Input.is_action_pressed(stick_position + "stick_right"):
 			target_velocity = cam_forward.cross(Vector3.UP) * speed
 
 		if Input.is_action_just_pressed("give_mirror"):

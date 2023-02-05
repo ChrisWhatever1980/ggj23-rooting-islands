@@ -11,13 +11,13 @@
 [ext_resource path="res://MirrorCollectible.tscn" type="PackedScene" id=9]
 [ext_resource path="res://HUD.gd" type="Script" id=10]
 [ext_resource path="res://SeedCollectible.tscn" type="PackedScene" id=11]
-[ext_resource path="res://StartMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Menu.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=2]
 resource_name = "MenuFadeIn"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("StartMenu:modulate")
+tracks/0/path = NodePath("Menu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -33,7 +33,7 @@ tracks/0/keys = {
 resource_name = "MenuFadeOut"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("StartMenu:modulate")
+tracks/0/path = NodePath("Menu:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -51,7 +51,7 @@ RootScene = ExtResource( 6 )
 WaterCollectibleScene = ExtResource( 8 )
 MirrorCollectibleScene = ExtResource( 9 )
 
-[node name="StartMenu" parent="." instance=ExtResource( 12 )]
+[node name="Menu" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 process_priority = 3
 
