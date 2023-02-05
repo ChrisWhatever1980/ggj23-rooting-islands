@@ -23,6 +23,10 @@ Globals="*res://Globals.gd"
 
 window/size/fullscreen=true
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/dreadpon.spatial_gardener/plugin.cfg" )
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
