@@ -84,6 +84,24 @@ func _process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed("collect_resource"):
 			collect_resource()
+			
+		if Input.is_action_just_pressed("gas_gyrocopter"):
+			motor_sound.playing = true
+			$GyrocopterRotate/electric_gyrocopter.visible = false
+			$GyrocopterRotate/Gyrocopter.visible = true
+			$GyrocopterRotate/old_gyrocopter.visible = false
+			
+		if Input.is_action_just_pressed("electric_gyrocopter"):
+			motor_sound.stop()
+			$GyrocopterRotate/electric_gyrocopter.visible = true
+			$GyrocopterRotate/Gyrocopter.visible = false
+			$GyrocopterRotate/old_gyrocopter.visible = false
+			
+		if Input.is_action_just_pressed("old_gyrocopter"):
+			motor_sound.stop()
+			$GyrocopterRotate/electric_gyrocopter.visible = false
+			$GyrocopterRotate/Gyrocopter.visible = false
+			$GyrocopterRotate/old_gyrocopter.visible = true
 
 		if Input.is_action_pressed("turbo"):
 			turbo = true
@@ -103,6 +121,16 @@ func _process(delta: float) -> void:
 		Gyrocopter.look_at(translation + 10 * look_direction, Vector3.UP)
 
 	move_and_slide(velocity)
+
+
+func unlock_electric_gyrocopter():
+	GameEvents.emit_signal("fade_out")
+	motor_sound.stop()
+	$GyrocopterRotate/electric_gyrocopter.visible = true
+	$GyrocopterRotate/Gyrocopter.visible = false
+	$GyrocopterRotate/old_gyrocopter.visible = false
+	yield(get_tree().create_timer(1.0), "timeout")
+	GameEvents.emit_signal("fade_in")
 
 
 func deploy_mirror():
