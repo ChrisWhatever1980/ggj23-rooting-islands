@@ -71,12 +71,12 @@ margin_bottom = 124.0
 
 [node name="GyrokopterLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Developer2"]
 margin_top = 13.0
-margin_right = 367.0
+margin_right = 365.0
 margin_bottom = 57.0
-text = "CREDITS_GYROKOPTER_SOUND"
+text = "CREDITS_GYROCOPTER_SOUND"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Developer2"]
-margin_left = 407.0
+margin_left = 405.0
 margin_right = 654.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
