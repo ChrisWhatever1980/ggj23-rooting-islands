@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.tscn" type="PackedScene" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://MirrorCollectible.tscn" type="PackedScene" id=9]
 [ext_resource path="res://FadeScreen.gd" type="Script" id=10]
 [ext_resource path="res://SeedCollectible.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Reflection.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Menu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Reflection.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -31,7 +32,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "fade_in"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("FadeScreen/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -46,7 +47,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "fade_out"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("FadeScreen/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -58,19 +59,55 @@ tracks/0/keys = {
 "values": [ Color( 0.815686, 0.643137, 0.180392, 0 ), Color( 0.815686, 0.643137, 0.180392, 1 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "MenuFadeIn"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "MenuFadeOut"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="World" type="Spatial"]
 script = ExtResource( 5 )
 RootScene = ExtResource( 6 )
 WaterCollectibleScene = ExtResource( 8 )
 MirrorCollectibleScene = ExtResource( 9 )
-ReflectionScene = ExtResource( 12 )
+ReflectionScene = ExtResource( 13 )
+
+[node name="Menu" parent="." instance=ExtResource( 12 )]
+pause_mode = 2
+process_priority = 3
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235989, 0, 0 )
 cam = NodePath("../Camera")
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0319281, 15 )
 Target = NodePath("../Player")
 offset = Vector3( 0, 5, 15 )
 
@@ -87,11 +124,13 @@ transform = Transform( 1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 
 far = 1000.0
 
 [node name="FadeScreen" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource( 10 )
 
 [node name="ColorRect" type="ColorRect" parent="FadeScreen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.815686, 0.643137, 0.180392, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeScreen"]
@@ -196,22 +235,26 @@ transform = Transform( -0.770825, 0.614962, 0.166286, 0, 0.261027, -0.965332, -0
 [node name="SeedCollectible5" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.829576, 0.345097, -0.438991, 0.348226, -0.294843, -0.889835, -0.436513, -0.891053, 0.124423, -49.1751, 55.7363, -3.12978 )
 
-[node name="Reflection0" parent="." instance=ExtResource( 12 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/MenuFadeIn = SubResource( 4 )
+anims/MenuFadeOut = SubResource( 5 )
+
+[node name="Reflection0" parent="." instance=ExtResource( 13 )]
 visible = false
 
-[node name="Reflection1" parent="." instance=ExtResource( 12 )]
+[node name="Reflection1" parent="." instance=ExtResource( 13 )]
 visible = false
 
-[node name="Reflection2" parent="." instance=ExtResource( 12 )]
+[node name="Reflection2" parent="." instance=ExtResource( 13 )]
 visible = false
 
-[node name="Reflection3" parent="." instance=ExtResource( 12 )]
+[node name="Reflection3" parent="." instance=ExtResource( 13 )]
 visible = false
 
-[node name="Reflection4" parent="." instance=ExtResource( 12 )]
+[node name="Reflection4" parent="." instance=ExtResource( 13 )]
 visible = false
 
-[node name="Reflection5" parent="." instance=ExtResource( 12 )]
+[node name="Reflection5" parent="." instance=ExtResource( 13 )]
 visible = false
 
 [node name="RootCamera" type="Camera" parent="."]

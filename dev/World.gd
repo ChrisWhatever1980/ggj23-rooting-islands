@@ -1,6 +1,5 @@
 extends Spatial
 
-
 export(PackedScene) var RootScene
 export(PackedScene) var WaterCollectibleScene
 export(PackedScene) var MirrorCollectibleScene
@@ -14,6 +13,7 @@ var deployed_mirror = null
 
 func _ready() -> void:
 	randomize()
+	Globals.connect("start_menu_closed", self, "on_start_menu_closed")
 	
 	GameEvents.connect("deploy_mirror", self, "deploy_mirror")
 	GameEvents.connect("spawn_root", self, "spawn_root")
@@ -54,8 +54,11 @@ func deploy_mirror(pos, target):
 
 
 func abort_deploy():
-	deployed_mirror.queue_free()
+	deployed_mirror.collectable = true
 	deployed_mirror = null
+#	deployed_mirror.Reflection.queue_free()
+#	deployed_mirror.queue_free()
+
 	$Player.abort_deploy()
 	$Camera.Target = $Player
 
@@ -95,3 +98,23 @@ func spawn_root(root_seed, pos, target, target_island):
 	new_root.RootCamera = $RootCamera
 	add_child(new_root)
 	new_root.start_grow(pos, target, target_island)
+
+func _input(event):
+	if event is InputEventKey and  event.scancode == KEY_P:
+		$Menu.visible = true;
+		$AnimationPlayer.play("MenuFadeIn")
+		yield ($AnimationPlayer, "animation_finished")
+		get_tree().paused = true
+		pass 
+
+	
+func on_start_menu_closed():
+	#$AnimationPlayer.connect("animation_finished", self, "after_menu_fade_out_animation")
+	$AnimationPlayer.play("MenuFadeOut")
+
+	yield ($AnimationPlayer, "animation_finished")
+
+	$Menu.visible = false
+	var StartButton = $Menu.get_node("ColorRect/StartMenu/CenterContainer/VBoxContainer/StartGame")
+	StartButton.text = 'Continue'
+	pass

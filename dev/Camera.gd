@@ -31,19 +31,36 @@ func get_camera_forward():
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("leftstick_left"):
-		offset = offset.rotated(Vector3.UP, delta * rotate_speed)
+	var x_inversion = 1
+	if Globals.is_x_axis_inverted: x_inversion = -1
+	
+	var y_inversion = 1
+	if Globals.is_y_axis_inverted: y_inversion = -1
+	
+	var stick_position := "left"
+	var forward_action := "up"
+	var backward_action := "down"
 
-	if Input.is_action_pressed("leftstick_right"):
-		offset = offset.rotated(Vector3.UP, -delta * rotate_speed)
+	if Globals.is_movement_stick_swapped: 
+		stick_position = "right"
+		forward_action = "forward"
+		backward_action = "backward"
+		
+	if Globals.is_start_menu: return
+
+	if Input.is_action_pressed(stick_position + "stick_left"):
+		offset = offset.rotated(Vector3.UP, delta * rotate_speed * x_inversion)
+
+	if Input.is_action_pressed(stick_position + "stick_right"):
+		offset = offset.rotated(Vector3.UP, -delta * rotate_speed * x_inversion)
 
 	var cam_axis = transform.basis.x.normalized()
 
-	if Input.is_action_pressed("leftstick_up"):
-		offset = offset.rotated(cam_axis, delta * rotate_speed)
+	if Input.is_action_pressed(stick_position + "stick_" + forward_action):
+		offset = offset.rotated(cam_axis, delta * rotate_speed * y_inversion)
 
-	if Input.is_action_pressed("leftstick_down"):
-		offset = offset.rotated(cam_axis, -delta * rotate_speed)
+	if Input.is_action_pressed(stick_position + "stick_" + backward_action):
+		offset = offset.rotated(cam_axis, -delta * rotate_speed * y_inversion)
 
 	var target_pos = Target.translation + offset
 	
