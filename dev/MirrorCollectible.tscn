@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://MirrorCollectible.gd" type="Script" id=1]
 [ext_resource path="res://models/GyrocopterMaterial.material" type="Material" id=2]
 [ext_resource path="res://models/MirrorMaterial.material" type="Material" id=3]
+[ext_resource path="res://ImmediateGeometry.gd" type="Script" id=4]
 
 [sub_resource type="SphereShape" id=1]
+radius = 3.0
 
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 2, 0.1, 2 )
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="ArrayMesh" id=4]
 resource_name = "mirror_collectible_Plane"
@@ -36,42 +39,18 @@ surfaces/1 = {
 "vertex_count": 144
 }
 
-[sub_resource type="CylinderMesh" id=3]
-top_radius = 20.0
-bottom_radius = 0.0
-height = 200.0
-
-[sub_resource type="SpatialMaterial" id=5]
-flags_transparent = true
-flags_unshaded = true
-albedo_color = Color( 0.92549, 0.933333, 0.72549, 0.172549 )
-
-[node name="MirrorCollectible" type="Area" groups=["MirrorCollectible"]]
+[node name="MirrorCollectible" type="Area" groups=["MirrorCollectible", "Water_and_Light"]]
 script = ExtResource( 1 )
-Spotlight = NodePath("SpotLight")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="ImmediateGeometry" type="ImmediateGeometry" parent="."]
 visible = false
-mesh = SubResource( 2 )
+material_override = SubResource( 6 )
+script = ExtResource( 4 )
 
-[node name="mirror_collectible" type="Spatial" parent="."]
-
-[node name="Plane" type="MeshInstance" parent="mirror_collectible"]
+[node name="Plane" type="MeshInstance" parent="."]
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 4 )
-
-[node name="SpotlightShine" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
-visible = false
-mesh = SubResource( 3 )
-material/0 = SubResource( 5 )
-
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-visible = false
-light_color = Color( 0.972549, 0.929412, 0.635294, 1 )
-light_energy = 16.0
-spot_range = 200.0
-spot_angle = 5.0
+skeleton = NodePath("")

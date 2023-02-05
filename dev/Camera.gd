@@ -1,11 +1,17 @@
 extends KinematicBody
 
+
 export var rotate_speed = 1.0
 export var lerp_speed = 3.0
 export(NodePath) onready var Target = get_node(Target) as Node
 export (Vector3) var offset = Vector3.ZERO
 
+
 onready var Cam = $Camera
+
+
+func _ready() -> void:
+	GameEvents.connect("switch_to_player_cam", self, "switch_to_player_cam")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,6 +19,11 @@ func _process(delta: float) -> void:
 #	translation = translation.move_toward(Target.translation, delta)
 #	Cam.look_at(Target.translation, Vector3.UP)
 	pass
+
+
+func switch_to_player_cam():
+	Cam.current = true
+
 
 
 func get_camera_forward():

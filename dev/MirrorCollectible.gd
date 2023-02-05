@@ -3,16 +3,20 @@ extends Area
 
 var Sun = null
 var rot_axis
-export(NodePath) onready var Spotlight = get_node(Spotlight) as Node
 var target = null
 var collectable = true
 var mirror_mat
+var light_on = false
+export(NodePath) var ReflectionPath = null
+var Reflection = null
 
 
 func _ready() -> void:
+	if ReflectionPath != null:
+		Reflection = get_node(ReflectionPath) as Node
 	Sun = get_parent().get_node("Sun")
 	rot_axis = Vector3(-1.0 + randf() * 2.0, -1.0 + randf() * 2.0, -1.0 + randf() * 2.0).normalized()
-	mirror_mat = $mirror_collectible/Plane.mesh.surface_get_material(0)
+	mirror_mat = $Plane.mesh.surface_get_material(0)
 
 
 func _process(delta: float) -> void:
@@ -23,26 +27,28 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta):
-	var light_on = false
+	if !Reflection:
+		print_debug("ERROR: Reflection missing")
+
+	light_on = false
 	if Sun:
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(translation, Sun.translation, [self])
-		if result and result.collider.is_in_group("Sun"):
-			var sun_vector = (translation - Sun.translation).normalized()
-			var angle = sun_vector.signed_angle_to(global_transform.basis.y, Vector3.UP)
-			if angle >= PI * 0.5:
-				var mirror_dir = sun_vector.reflect(global_transform.basis.y)
-				Spotlight.look_at(translation + mirror_dir, Vector3.UP)
-				light_on = true
-			else:
-				light_on = false
-		else:
-			light_on = false
+		if result:
+			if result.collider.is_in_group("Sun"):
+				var sun_vector = (global_translation - Sun.translation).normalized()
+				var angle = sun_vector.signed_angle_to(-global_transform.basis.z, Vector3.UP)
+				#print(str(rad2deg(angle)))
+				if !(angle >= -PI / 2.0 and angle <= PI / 2.0):
+					var mirror_dir = -sun_vector.reflect(-global_transform.basis.z)
+					Reflection.look_at_from_position(global_translation, global_translation + 5.0 * mirror_dir, Vector3.UP)
+					light_on = true
 
-	toggle_light(light_on)
+	var sun_vector1 = (global_translation - Sun.translation).normalized()
+	var mirror_dir = sun_vector1.reflect(-global_transform.basis.z)
+	$ImmediateGeometry.reflected = global_translation + 5.0 * mirror_dir
+	$ImmediateGeometry.normal = -global_transform.basis.z
 
-
-func toggle_light(active):
-	Spotlight.visible = active
-	$SpotlightShine.visible = active
-	mirror_mat.emission_enabled = active
+	if Reflection and light_on:
+		#Reflection.set_enabled(light_on)
+		mirror_mat.emission_enabled = light_on

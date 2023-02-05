@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://gyrocopter_animated.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sounds/motor.wav" type="AudioStream" id=3]
+[ext_resource path="res://WaterCollectible.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -29,8 +30,9 @@ albedo_color = Color( 0.121569, 0.12549, 0.188235, 1 )
 [sub_resource type="SphereShape" id=4]
 radius = 5.0
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 1 )
+WaterScene = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
@@ -113,4 +115,9 @@ unit_db = 20.0
 autoplay = true
 max_distance = 200.0
 
+[node name="WaterReloadTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="area_entered" from="Area" to="." method="_on_Area_entered"]
+[connection signal="area_exited" from="Area" to="." method="_on_Area_exited"]
+[connection signal="timeout" from="WaterReloadTimer" to="." method="_on_WaterReloadTimer_timeout"]
