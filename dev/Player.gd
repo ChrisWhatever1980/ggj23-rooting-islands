@@ -22,6 +22,7 @@ var relatives_found = 0
 onready var Gyrocopter = $GyrocopterRotate
 onready var motor_sound = $MotorSound
 onready var blades_sound = $BladesSound
+onready var waterdrop_sound = $WaterdropSound
 
 
 var Water = 0
@@ -170,6 +171,7 @@ func shoot_water():
 		shootWater.collectable = false
 		can_fire_water = false
 		get_parent().add_child(shootWater)
+		shootWater.water_sound.play()
 		$WaterReloadTimer.start()
 
 
@@ -213,6 +215,7 @@ func give_water():
 	Water += 5 + randi() % 5
 	Water = clamp(Water, 0, 100)
 	GameEvents.emit_signal("update_water", Water / 100.0)
+	waterdrop_sound.play()
 
 
 func give_mirror():

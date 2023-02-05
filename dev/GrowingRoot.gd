@@ -11,7 +11,10 @@ var RootCamera
 var target_island
 var growing_root_mat
 
+
+onready var root_grow_sound = $root_grow_sound
 onready var growing_root = $roots/Root001
+
 
 export var grow_time = 30.0
 export var dryout_time = 30.0
@@ -35,16 +38,14 @@ func start_grow(pos, target, island):
 	RootCamera.translation = translation + Vector3(20, 0, -20)
 	RootCamera.look_at(translation, Vector3.UP)
 	RootCamera.current = true
+	
+	$RootSoundTimer.start()
 
 	yield(get_tree().create_timer(1.0), "timeout")
 
 
 
 func _process(delta: float) -> void:
-#	dryness += delta * (1.0 / dryout_time)
-#	root_mat.albedo_color = lerp(Color.tan, Color.black, dryness)
-#	if dryness >= 1.0:
-#		queue_free()
 
 	var mesh_height = $MeshInstance.mesh.height
 
@@ -80,3 +81,10 @@ func _process(delta: float) -> void:
 
 			GameEvents.emit_signal("switch_to_relative_cam", target_island)
 
+
+
+func _on_RootSoundTimer_timeout() -> void:
+	if !stopped and !root_grow_sound.playing:
+		root_grow_sound.play()
+	if stopped:
+		$RootSoundTimer.stop()

@@ -8,6 +8,9 @@ var viable_root_target = false
 var target_island
 
 
+onready var water_sound = $water_sound
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$WaterStopTimer.start()

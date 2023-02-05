@@ -54,8 +54,9 @@ func deploy_mirror(pos, target):
 
 
 func abort_deploy():
-	deployed_mirror.collectable = true
-	deployed_mirror = null
+	if deployed_mirror:
+		deployed_mirror.collectable = true
+		deployed_mirror = null
 #	deployed_mirror.Reflection.queue_free()
 #	deployed_mirror.queue_free()
 

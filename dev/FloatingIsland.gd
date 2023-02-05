@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	relativeCamera.look_at(relative.global_translation, Vector3.UP)
-	relative.look_at(relativeCamera.global_translation, Vector3.UP)
 
 
 func switch_to_relative_cam(target_island):
