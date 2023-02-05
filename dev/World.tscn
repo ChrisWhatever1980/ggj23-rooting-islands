@@ -60,7 +60,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235989, 0, 0 )
 cam = NodePath("../Camera")
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0319281, 15 )
 Target = NodePath("../Player")
 offset = Vector3( 0, 5, 15 )
 

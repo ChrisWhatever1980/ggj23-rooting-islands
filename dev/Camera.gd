@@ -34,6 +34,8 @@ func _physics_process(delta: float) -> void:
 		stick_position = "right"
 		forward_action = "forward"
 		backward_action = "backward"
+		
+	if Globals.is_start_menu: return
 
 	if Input.is_action_pressed(stick_position + "stick_left"):
 		offset = offset.rotated(Vector3.UP, delta * rotate_speed * x_inversion)

@@ -11,4 +11,3 @@ func set_is_start_menu(new_value):
 	is_start_menu = new_value
 	if (!new_value):
 		emit_signal("start_menu_closed")
-	pass

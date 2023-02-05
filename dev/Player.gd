@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		forward_action = "up"
 		backward_action = "down"
 
-	if !deploying_mirror:
+	if !deploying_mirror && !Globals.is_start_menu:
 		if Input.is_action_pressed(stick_position + "stick_" + forward_action):
 			target_velocity = cam_forward * speed
 
