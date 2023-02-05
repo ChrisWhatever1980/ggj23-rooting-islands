@@ -128,5 +128,5 @@ func on_start_menu_closed():
 
 	$Menu.visible = false
 	var StartButton = $Menu.get_node("ColorRect/StartMenu/CenterContainer/VBoxContainer/StartGame")
-	StartButton.text = 'Continue'
+	StartButton.text = tr('CONTINUE')
 	pass
