@@ -96,12 +96,15 @@ func spawn_root(root_seed, pos, target, target_island):
 
 
 func _input(event):
-	if event is InputEventKey and event.scancode == KEY_P:
-		$Menu.visible = true;
-		Globals.set_is_start_menu(true)
+
+	#if event is InputEventKey and event.scancode == KEY_P:
+	if Input.is_action_just_pressed("pause"):
+		$Menu.visible = true
+		Globals.set_is_start_menu(false)
 		$AnimationPlayer.play("MenuFadeIn")
 		yield ($AnimationPlayer, "animation_finished")
 		get_tree().paused = true
+		pass 
 
 
 func on_start_menu_closed():
@@ -120,7 +123,7 @@ func on_start_menu_closed():
 		$Player.motor_sound.play()
 
 
-	#$Menu.visible = false
+	$Menu.visible = false
 	var StartButton = $Menu.get_node("ColorRect/StartMenu/CenterContainer/VBoxContainer/StartGame")
 	StartButton.text = tr('CONTINUE')
 	pass

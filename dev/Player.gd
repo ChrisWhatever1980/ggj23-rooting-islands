@@ -147,7 +147,7 @@ func _process(delta: float) -> void:
 
 
 func unlock_electric_gyrocopter():
-	
+
 	print("UNLOCK NOW")
 	if electric_gyrocopter_unlocked:
 		return
