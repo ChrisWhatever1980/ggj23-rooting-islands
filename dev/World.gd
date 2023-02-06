@@ -100,7 +100,7 @@ func _input(event):
 	#if event is InputEventKey and event.scancode == KEY_P:
 	if Input.is_action_just_pressed("pause"):
 		$Menu.visible = true
-		Globals.set_is_start_menu(false)
+		Globals.set_is_start_menu(true)
 		$AnimationPlayer.play("MenuFadeIn")
 		yield ($AnimationPlayer, "animation_finished")
 		get_tree().paused = true
