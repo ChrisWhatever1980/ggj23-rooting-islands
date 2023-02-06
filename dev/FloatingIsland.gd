@@ -5,7 +5,6 @@ onready var relativeCamera = $Camera
 onready var relative = $Relative
 onready var animPlayer = $Camera/AnimationPlayer
 
-var MessageCounter = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +16,7 @@ func _process(delta: float) -> void:
 
 
 func switch_to_relative_cam(target_island):
-	if MessageCounter < 6 and self == target_island:
+	if Globals.MessageCounter < 6 and self == target_island:
 		#relativeCamera.look_at(relative.global_translation, Vector3.UP)
 		relativeCamera.current = true
 		GameEvents.emit_signal("fade_in")
@@ -28,7 +27,9 @@ func switch_to_relative_cam(target_island):
 		$Relative.wave()
 		yield(get_tree().create_timer(1.067), "timeout")
 		# show message
-		yield(get_tree().create_timer(2.0), "timeout")
-		GameEvents.emit_signal("show_message", "MESSAGE" + str(MessageCounter + 1), true)
+		yield(get_tree().create_timer(1.0), "timeout")
+		GameEvents.emit_signal("show_message", "MESSAGE" + str(Globals.MessageCounter + 1), true)
 
-		MessageCounter += 1
+		print("Show Message " + str(Globals.MessageCounter))
+
+		Globals.MessageCounter += 1

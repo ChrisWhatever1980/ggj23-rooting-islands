@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 
 			GameEvents.emit_signal("fade_out")
 
-			yield(get_tree().create_timer(1.0), "timeout")
+			yield(get_tree().create_timer(0.5), "timeout")
 
 			GameEvents.emit_signal("switch_to_relative_cam", target_island)
 

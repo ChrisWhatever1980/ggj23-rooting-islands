@@ -2,7 +2,7 @@ extends Spatial
 
 
 var waves = 3
-
+onready var mesh = $CharacterMale/Skeleton/characterLargeFemale
 
 func _ready() -> void:
 	GameEvents.connect("relative_wave", self, "wave")
@@ -11,8 +11,9 @@ func _ready() -> void:
 
 
 func set_color(color):
-	var mat = $CharacterMale/Skeleton/characterLargeFemale.get_surface_material(0)
+	var mat = mesh.get_surface_material(0).duplicate()
 	mat.albedo_color = color
+	mesh.set_surface_material(0, mat)
 
 
 func idle():

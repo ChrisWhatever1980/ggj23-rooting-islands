@@ -14,10 +14,9 @@ var deployed_mirror = null
 func _ready() -> void:
 	randomize()
 	Globals.connect("start_menu_closed", self, "on_start_menu_closed")
-	
+
 	GameEvents.connect("deploy_mirror", self, "deploy_mirror")
 	GameEvents.connect("spawn_root", self, "spawn_root")
-	GameEvents.connect("relative_found", self, "relative_found")
 
 	var spawns = get_tree().get_nodes_in_group("Collectible_Spawns")
 	for s in range(0, spawns.size()):
@@ -31,11 +30,6 @@ func _ready() -> void:
 				new_collectible.translation = spawns[s].global_translation
 				new_collectible.Sun = $Sun
 				add_child(new_collectible)
-
-
-func relative_found():
-	# Show an old family foto and a message
-	pass
 
 
 func deploy_mirror(pos, target):
@@ -104,7 +98,7 @@ func spawn_root(root_seed, pos, target, target_island):
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_P:
 		$Menu.visible = true;
-		Globals.set_is_start_menu(false)
+		Globals.set_is_start_menu(true)
 		$AnimationPlayer.play("MenuFadeIn")
 		yield ($AnimationPlayer, "animation_finished")
 		get_tree().paused = true
@@ -126,7 +120,7 @@ func on_start_menu_closed():
 		$Player.motor_sound.play()
 
 
-	$Menu.visible = false
+	#$Menu.visible = false
 	var StartButton = $Menu.get_node("ColorRect/StartMenu/CenterContainer/VBoxContainer/StartGame")
 	StartButton.text = tr('CONTINUE')
 	pass

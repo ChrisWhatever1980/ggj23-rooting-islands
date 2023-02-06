@@ -153,15 +153,11 @@ func unlock_electric_gyrocopter():
 		return
 
 	electric_gyrocopter_unlocked = true
-	#GameEvents.emit_signal("fade_out")
-	#yield(get_tree().create_timer(1.0), "timeout")
 	motor_sound.stop()
 	blades_sound.playing = true
 	$GyrocopterRotate/electric_gyrocopter.visible = true
 	$GyrocopterRotate/Gyrocopter.visible = false
 	$GyrocopterRotate/old_gyrocopter.visible = false
-	#yield(get_tree().create_timer(1.0), "timeout")
-	#GameEvents.emit_signal("fade_in")
 	GameEvents.emit_signal("show_message", "NEW_RIDE_MSG", false)
 
 
@@ -170,6 +166,7 @@ func deploy_mirror():
 		deploying_mirror = true
 		GameEvents.emit_signal("deploy_mirror", translation, translation + 5 * transform.basis.z)
 		Mirrors -= 1
+		GameEvents.emit_signal("update_mirror", Mirrors)
 
 
 func shoot_water():
@@ -179,6 +176,7 @@ func shoot_water():
 		shootWater.translation = translation
 		shootWater.velocity = -Gyrocopter.global_transform.basis.z
 		shootWater.collectable = false
+		shootWater.shot_by_player = true
 		can_fire_water = false
 		get_parent().add_child(shootWater)
 		shootWater.water_sound.play()

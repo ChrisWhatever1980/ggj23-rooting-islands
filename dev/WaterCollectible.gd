@@ -6,6 +6,7 @@ var collectable = true
 var velocity = Vector3.ZERO
 var viable_root_target = false
 var target_island
+var shot_by_player = false
 
 
 onready var water_sound = $water_sound
