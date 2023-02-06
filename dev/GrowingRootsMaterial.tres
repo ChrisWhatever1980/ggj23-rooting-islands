@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform vec4 color : hint_color;
+uniform float grow;
+varying float v_alpha;
+
+void vertex()
+{
+	if (UV.y > grow)
+		v_alpha = 0.0;
+	else
+		v_alpha = 1.0;
+}
+
+void fragment()
+{
+	ALBEDO = color.rgb;
+	ALPHA = v_alpha;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.282353, 0.188235, 0.027451, 1 )
+shader_param/grow = 1.0

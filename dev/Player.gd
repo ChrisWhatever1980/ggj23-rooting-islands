@@ -2,69 +2,230 @@ extends KinematicBody
 
 
 export(NodePath) onready var cam = get_node(cam) as Node
+export(PackedScene) var WaterScene
 
 
 var velocity = Vector3.ZERO
 var target_velocity = Vector3.ZERO
 var speed = 10.0
+var turbo = false
 var lerp_velocity_speed = 10.0
 var water_gauge_mat
+var deploying_mirror = false
+var can_fire_water = true
+var nearby_collectibale = null
 
+var electric_gyrocopter_unlocked = false
+
+var relatives_found = 0
 
 onready var Gyrocopter = $GyrocopterRotate
+onready var motor_sound = $MotorSound
+onready var blades_sound = $BladesSound
+onready var waterdrop_sound = $WaterdropSound
 
 
 var Water = 0
 var Mirrors = 0
 
 
+func _ready() -> void:
+	GameEvents.connect("relative_found", self, "relative_found")
+
+
+func relative_found():
+	if relatives_found < 6:
+		relatives_found += 1
+
+		if relatives_found >= 6:
+			# Happy End
+			GameEvents.emit_signal("show_happy_end")
+			yield(get_tree().create_timer(2.0), "timeout")
+			unlock_electric_gyrocopter()
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
 	var cam_forward = cam.get_camera_forward()
+	cam_forward.y = 0.0
+	cam_forward = cam_forward.normalized()
 
 	var target_velocity = Vector3.ZERO
+	
+	var stick_position := "right"
+	var forward_action := "forward"
+	var backward_action := "backward"
+	if Globals.is_movement_stick_swapped:
+		stick_position = "left"
+		forward_action = "up"
+		backward_action = "down"
 
-	if Input.is_action_pressed("rightstick_forward"):
-		target_velocity = cam_forward * speed
+	if !deploying_mirror && !Globals.is_start_menu:
+		if Input.is_action_pressed(stick_position + "stick_" + forward_action):
+			target_velocity += cam_forward
 
-	if Input.is_action_pressed("rightstick_backward"):
-		target_velocity = -cam_forward * speed
+		if Input.is_action_pressed(stick_position + "stick_" + backward_action):
+			target_velocity += -cam_forward
 
-	if Input.is_action_pressed("rightstick_left"):
-		target_velocity = -cam_forward.cross(Vector3.UP) * speed
+		if Input.is_action_pressed(stick_position + "stick_left"):
+			target_velocity += -cam_forward.cross(Vector3.UP)
 
-	if Input.is_action_pressed("rightstick_right"):
-		target_velocity = cam_forward.cross(Vector3.UP) * speed
+		if Input.is_action_pressed(stick_position + "stick_right"):
+			target_velocity += cam_forward.cross(Vector3.UP)
 
-	if Input.is_action_just_pressed("give_mirror"):
-		give_mirror()
+		if Input.is_action_pressed("sink"):
+			target_velocity += Vector3.DOWN
 
-	if Input.is_action_just_pressed("give_water"):
-		give_water()
+		if Input.is_action_pressed("rise"):
+			target_velocity += Vector3.UP
 
-	velocity = lerp(velocity, target_velocity, 0.03)
+		if Input.is_action_just_pressed("give_mirror"):
+			give_mirror()
+
+		if Input.is_action_just_pressed("give_water"):
+			give_water()
+
+		if Input.is_action_just_pressed("deploy_mirror"):
+			deploy_mirror()
+
+		if Input.is_action_just_pressed("shoot_water"):
+			shoot_water()
+			
+		if Input.is_action_just_pressed("collect_resource"):
+			collect_resource()
+			
+		if Input.is_action_just_pressed("gas_gyrocopter"):
+			motor_sound.playing = true
+			blades_sound.stop()
+			$GyrocopterRotate/electric_gyrocopter.visible = false
+			$GyrocopterRotate/Gyrocopter.visible = true
+			$GyrocopterRotate/old_gyrocopter.visible = false
+			
+		if Input.is_action_just_pressed("electric_gyrocopter"):
+			motor_sound.stop()
+			blades_sound.playing = true
+			$GyrocopterRotate/electric_gyrocopter.visible = true
+			$GyrocopterRotate/Gyrocopter.visible = false
+			$GyrocopterRotate/old_gyrocopter.visible = false
+			
+		if Input.is_action_just_pressed("old_gyrocopter"):
+			motor_sound.stop()
+			blades_sound.stop()
+			$GyrocopterRotate/electric_gyrocopter.visible = false
+			$GyrocopterRotate/Gyrocopter.visible = false
+			$GyrocopterRotate/old_gyrocopter.visible = true
+		
+		if Input.is_action_just_pressed("unlock_electric_gyrocopter"):
+			unlock_electric_gyrocopter()
+
+		if Input.is_action_just_pressed("trigger_happy_end"):
+			relatives_found = 5
+			relative_found()
+			#GameEvents.emit_signal("show_happy_end")
+
+		if Input.is_action_pressed("turbo"):
+			turbo = true
+		else:
+			turbo = false
+
+	target_velocity = target_velocity.normalized() * speed
+
+	velocity = lerp(velocity, (4.0 if turbo else 1.0) * target_velocity, 0.03)
+
+	motor_sound.pitch_scale = 1.0 + velocity.length() / 10.0
+	blades_sound.pitch_scale = 1.0 + velocity.length() / 10.0
 
 	if velocity.length_squared() > 0.0:
-		print("Velocity: " + str(velocity.length_squared()))
-		Gyrocopter.look_at(translation + 10 * velocity, Vector3.UP)
+		var look_direction = velocity
+		look_direction.y = 0.0
+		look_direction = look_direction.normalized()
+		if look_direction.length_squared() > 0.0:
+			Gyrocopter.look_at(translation + 10 * look_direction, Vector3.UP)
 
 	move_and_slide(velocity)
 
 
+func unlock_electric_gyrocopter():
+
+	print("UNLOCK NOW")
+	if electric_gyrocopter_unlocked:
+		return
+
+	electric_gyrocopter_unlocked = true
+	#GameEvents.emit_signal("fade_out")
+	#yield(get_tree().create_timer(1.0), "timeout")
+	motor_sound.stop()
+	blades_sound.playing = true
+	$GyrocopterRotate/electric_gyrocopter.visible = true
+	$GyrocopterRotate/Gyrocopter.visible = false
+	$GyrocopterRotate/old_gyrocopter.visible = false
+	#yield(get_tree().create_timer(1.0), "timeout")
+	#GameEvents.emit_signal("fade_in")
+	GameEvents.emit_signal("show_message", "NEW_RIDE_MSG", false)
+
+
+func deploy_mirror():
+	if Mirrors > 0:
+		deploying_mirror = true
+		GameEvents.emit_signal("deploy_mirror", translation, translation + 5 * transform.basis.z)
+		Mirrors -= 1
+
+
+func shoot_water():
+	if Water > 10:
+		Water -= 10
+		var shootWater = WaterScene.instance()
+		shootWater.translation = translation
+		shootWater.velocity = -Gyrocopter.global_transform.basis.z
+		shootWater.collectable = false
+		can_fire_water = false
+		get_parent().add_child(shootWater)
+		shootWater.water_sound.play()
+		$WaterReloadTimer.start()
+
+
+func abort_deploy():
+	deploying_mirror = false
+	give_mirror()
+
+
 func _on_Area_entered(area: Area) -> void:
 	if Water < 100 and area.is_in_group("WaterCollectible"):
-		give_water()
-		area.queue_free()
+		if area.collectable:
+			#print("Collectable water close")
+			nearby_collectibale = area
+
 	if Mirrors < 5 and area.is_in_group("MirrorCollectible"):
-		give_mirror()
-		area.queue_free()
+		#print("Collectable mirror close")
+		nearby_collectibale = area
+
+
+func _on_Area_exited(area: Area) -> void:
+	if area.is_in_group("WaterCollectible") or area.is_in_group("MirrorCollectible"):
+		nearby_collectibale = null
+
+
+func collect_resource():
+	if nearby_collectibale:
+		if Water < 100 and nearby_collectibale.is_in_group("WaterCollectible") and nearby_collectibale.collectable:
+			give_water()
+			nearby_collectibale.queue_free()
+			nearby_collectibale = null
+			return
+		if Mirrors < 5 and nearby_collectibale.is_in_group("MirrorCollectible") and nearby_collectibale.collectable:
+			give_mirror()
+			nearby_collectibale.Reflection.queue_free()
+			nearby_collectibale.queue_free()
+			nearby_collectibale = null
+			return
 
 
 func give_water():
 	Water += 5 + randi() % 5
 	Water = clamp(Water, 0, 100)
 	GameEvents.emit_signal("update_water", Water / 100.0)
+	waterdrop_sound.play()
 
 
 func give_mirror():
@@ -72,3 +233,7 @@ func give_mirror():
 	print("Mirrors: " + str(Mirrors))
 	Mirrors = clamp(Mirrors, 0, 5)
 	GameEvents.emit_signal("update_mirror", Mirrors)
+
+
+func _on_WaterReloadTimer_timeout() -> void:
+	can_fire_water = true

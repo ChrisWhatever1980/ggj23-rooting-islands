@@ -1,0 +1,81 @@
+keys;en;de
+GAME_TITLE;Drifting Memories;Treibende Erinnerungen
+START_GAME;Start Game;Spiel beginnen
+OPTIONS_MENU;Options;Einstellungen
+QUIT_GAME;Leave;Spiel verlassen
+BACK_TO_MENU;Back;Zurück
+INVERT_X_AXIS;Invert X-Axis;X-Achse invertieren
+INVERT_Y_AXIS;Invert Y-Axis;Y-Achse invertieren
+SWAP_STICKS;Swap Movement Stick;Stick für Bewegung tauschen
+CREDITS;Credits;Mitwirkende
+HOW_TO_PLAY;How to Play;Spielanleitung
+CONTINUE;Continue;Fortsetzen
+MESSAGE1;Hello Dear, It's so good to see you. Sometimes I thought I saw people on the other pieces, but I didn't dare believe...;Hallo Liebes, es ist so schön, dich zu sehen. Manchmal dachte ich, ich hätte Leute auf den anderen Stücken gesehen, aber ich habe mich nicht getraut zu glauben...
+MESSAGE2;You came in that thing? You're braver than I thought. Harrumph! Anyways, well done, kiddo.;Du fliegst mit dem Ding da? Du bist mutiger als ich dachte. Grummel grummel, naja, gut gemacht, Kumpel.
+MESSAGE3;"One day my husband jumped and floated away. Sometimes I just want to follow him";"Eines Tages ist mein Mann einfach gesprungen und davon geschwebt. Manchmal will ich es ihm gleichmachen."
+MESSAGE4;Message 4;Nachricht 4
+MESSAGE5;Message 5;Nachricht 5
+MESSAGE6;Message 6;Nachricht 6
+NEW_RIDE_MSG;You did well. Thanks to you these drifting memories have new roots. Enjoy your new ride!;Das hast Du gut gemacht. Dank Dir haben diese treibenden Erinnerungen neue Wurzeln. Genieße Dein neues Gefährt!
+CREDITS_DEVELOPER;Developer;Entwickler
+CREDITS_GYROCOPTER_SOUND;Gyrocopter Sound;Gyrokopter Ton
+LANGUAGE:;Language:;Sprache:
+OPTION_GERMAN;German;Deutsch
+OPTION_ENGLISH;English;Englisch
+CREDITS_DEVELOPER;Created by;Erschaffen von
+CREDITS_GYROCOPTER_SOUND;Sound Effects;Soundeffekte
+GAMEPAD_CONTROLS;Gamepad controls;Gamepad-Steuerung
+KEYBOARD_CONTROLS;Keyboard controls;Tastatursteuerung
+KEYBOARD_CTRL_KEYS;"K
+-
++
+Q
+V
+X
+W
+S
+A
+D
+cursor keys";"K
+-
++
+Q
+V
+X
+W
+S
+A
+D
+Pfeiltasten"
+KEYBOARD_CTRL_FUNCTIONS;"collect a resource
+Sink
+Rise
+Abort mirror deploy
+shoot water
+deploy mirror
+move forward
+move backward
+move left
+move right
+rotate camera";"Ressource einsammeln
+Sinken
+Steigen
+Spiegelplatzierung abbrechen
+Water schießen
+Spiegel platzieren
+Vorwärts fliegen
+Rückwärts fliegen
+Nach links fliegen
+Nach rechts fliegen
+Kamera drehen"
+GAMEPAD_CTRL_SINK;Sink;Sinken
+GAMEPAD_CTRL_RISE;Rise;Steigen
+GAMEPAD_CTRL_STOPADJUST;"Stop adjusting mirror";"Spiegeldrehung abbrechen"
+GAMEPAD_CTRL_PLACEMIRROR;"Place mirror";"Spiegel platzieren"
+GAMEPAD_CTRL_LEFTSTICK;"Move Girochopper
+Rotate mirror";"Tragschrauber bewegen
+Spiegel drehen"
+GAMEPAD_CTRL_RIGHTSTICK;Rotate camera;Kamera drehen
+GAMEPAD_CTRL_COLLECT;"Collect resource";"Ressource einsammeln"
+GAMEPAD_CTRL_SPLASH;Splash water;Wasser spritzen
+GAMEPAD_CTRL_STOPADJUST;"Stop adjusting mirror";"Spiegeldrehung abbrechen"
