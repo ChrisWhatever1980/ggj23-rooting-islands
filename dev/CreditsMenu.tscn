@@ -45,7 +45,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer"]
 margin_right = 654.0
-margin_bottom = 261.0
+margin_bottom = 376.0
 
 [node name="Developer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_right = 654.0
@@ -67,36 +67,42 @@ align = 2
 [node name="Developer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 654.0
-margin_bottom = 261.0
+margin_bottom = 376.0
 
 [node name="GyrokopterLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Developer2"]
-margin_top = 81.0
+margin_top = 139.0
 margin_right = 365.0
-margin_bottom = 125.0
+margin_bottom = 183.0
 text = "CREDITS_GYROCOPTER_SOUND"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Developer2"]
 margin_left = 405.0
 margin_right = 654.0
-margin_bottom = 207.0
+margin_bottom = 322.0
 size_flags_horizontal = 3
 bbcode_enabled = true
-bbcode_text = "[right]Music (freesound.org)
-shadydave
+bbcode_text = "[right]Music
+shadydave (freesound.org)
 
-Sfx (freesound.org)
-justinbw
-basoap
-inspectorj
-14fpanska_nemec_petr
-caquet[/right]"
-text = "Music (freesound.org)
-shadydave
+Sfx
+justinbw (freesound.org)
+basoap (freesound.org)
+inspectorj (freesound.org)
+14fpanska_nemec_petr (freesound.org)
+caquet (freesound.org)
 
-Sfx (freesound.org)
-justinbw
-basoap
-inspectorj
-14fpanska_nemec_petr
-caquet"
+3D Models
+Character and building models (kenney.nl)[/right]"
+text = "Music
+shadydave (freesound.org)
+
+Sfx
+justinbw (freesound.org)
+basoap (freesound.org)
+inspectorj (freesound.org)
+14fpanska_nemec_petr (freesound.org)
+caquet (freesound.org)
+
+3D Models
+Character and building models (kenney.nl)"
 fit_content_height = true

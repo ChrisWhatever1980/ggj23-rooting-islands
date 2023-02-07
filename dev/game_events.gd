@@ -7,7 +7,7 @@ signal update_water
 signal update_mirror
 signal deploy_mirror
 signal spawn_root
-signal relative_found
+signal unlock_electric_gyrocopter
 signal switch_to_player_cam
 signal switch_to_relative_cam
 signal show_message

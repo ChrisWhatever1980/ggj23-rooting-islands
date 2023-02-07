@@ -21,14 +21,12 @@ func _ready() -> void:
 
 
 func show_happy_end():
-	yield(get_tree().create_timer(0.5), "timeout")
-	GameEvents.emit_signal("fade_out")
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	visible = true
 	$HappyEndCamera.current = true
 	GameEvents.emit_signal("fade_in")
-	yield(get_tree().create_timer(2.0), "timeout")
 	GameEvents.emit_signal("relative_wave")
+	yield(get_tree().create_timer(2.0), "timeout")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

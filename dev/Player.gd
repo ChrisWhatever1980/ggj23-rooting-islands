@@ -30,18 +30,7 @@ var Mirrors = 0
 
 
 func _ready() -> void:
-	GameEvents.connect("relative_found", self, "relative_found")
-
-
-func relative_found():
-	if relatives_found < 6:
-		relatives_found += 1
-
-		if relatives_found >= 6:
-			# Happy End
-			GameEvents.emit_signal("show_happy_end")
-			yield(get_tree().create_timer(2.0), "timeout")
-			unlock_electric_gyrocopter()
+	GameEvents.connect("unlock_electric_gyrocopter", self, "unlock_electric_gyrocopter")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -119,11 +108,6 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("unlock_electric_gyrocopter"):
 			unlock_electric_gyrocopter()
 
-		if Input.is_action_just_pressed("trigger_happy_end"):
-			relatives_found = 5
-			relative_found()
-			#GameEvents.emit_signal("show_happy_end")
-
 		if Input.is_action_pressed("turbo"):
 			turbo = true
 		else:
@@ -148,7 +132,6 @@ func _process(delta: float) -> void:
 
 func unlock_electric_gyrocopter():
 
-	print("UNLOCK NOW")
 	if electric_gyrocopter_unlocked:
 		return
 
@@ -158,7 +141,6 @@ func unlock_electric_gyrocopter():
 	$GyrocopterRotate/electric_gyrocopter.visible = true
 	$GyrocopterRotate/Gyrocopter.visible = false
 	$GyrocopterRotate/old_gyrocopter.visible = false
-	GameEvents.emit_signal("show_message", "NEW_RIDE_MSG", false)
 
 
 func deploy_mirror():
@@ -181,11 +163,12 @@ func shoot_water():
 		get_parent().add_child(shootWater)
 		shootWater.water_sound.play()
 		$WaterReloadTimer.start()
+		GameEvents.emit_signal("update_water", Water / 100.0)
 
 
 func abort_deploy():
 	deploying_mirror = false
-	give_mirror()
+	#give_mirror()
 
 
 func _on_Area_entered(area: Area) -> void:

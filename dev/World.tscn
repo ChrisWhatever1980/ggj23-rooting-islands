@@ -152,6 +152,7 @@ ReflectionScene = ExtResource( 13 )
 [node name="Menu" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 process_priority = 3
+visible = false
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235989, 0, 0 )
@@ -190,28 +191,29 @@ anims/fade_in = SubResource( 2 )
 anims/fade_out = SubResource( 3 )
 
 [node name="MessageBox" type="CenterContainer" parent="IngameOverlay"]
-visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -200.0
+margin_top = -242.0
 script = ExtResource( 15 )
 
 [node name="ColorRect" type="ColorRect" parent="IngameOverlay/MessageBox"]
-margin_left = 212.0
-margin_right = 812.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 600, 200 )
+margin_left = 112.0
+margin_top = 21.0
+margin_right = 912.0
+margin_bottom = 221.0
+rect_min_size = Vector2( 800, 200 )
 color = Color( 0, 0, 0, 0.352941 )
 
 [node name="Label" type="Label" parent="IngameOverlay/MessageBox/ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = -14.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 theme = ExtResource( 14 )
+text = "Example Text"
 autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IngameOverlay/MessageBox"]
@@ -298,22 +300,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7574, 52.2476, -53.543 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 81.2462, 32.9807, 67.5766 )
 
 [node name="SeedCollectible0" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.187621, 0.981132, 0.0466809, 0, 0.0475249, -0.99887, -0.982241, 0.187409, 0.00891668, 76.1661, 2.08552, -32.4854 )
+transform = Transform( 0.187621, 0.981132, 0.0466809, 0, 0.0475249, -0.99887, -0.982241, 0.187409, 0.00891668, 76.1661, 1.06145, -42.1156 )
+current_island = NodePath("../floating_island4")
 
 [node name="SeedCollectible1" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.238093, 0.970145, 0.0461582, 0, 0.0475249, -0.99887, -0.971242, -0.237824, -0.0113154, 5.26892, 16.18, 21.5451 )
+current_island = NodePath("../floating_island6")
 
 [node name="SeedCollectible2" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.999571, 0.00595236, 0.0286562, -0.0107531, 0.835938, -0.54872, -0.0272206, -0.548793, -0.835516, 75.9204, 29.4685, 46.3685 )
+current_island = NodePath("../floating_island5")
 
 [node name="SeedCollectible3" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.0629787, -0.870229, -0.488604, 0.0158811, 0.488641, -0.872341, 0.997888, -0.0626987, -0.0169534, 19.2239, 76.6373, 10.9312 )
+current_island = NodePath("../floating_island9")
 
 [node name="SeedCollectible4" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.770825, 0.614962, 0.166286, 0, 0.261027, -0.965332, -0.637048, -0.744102, -0.201206, -47.5181, 84.5627, 62.4937 )
+current_island = NodePath("../floating_island11")
 
 [node name="SeedCollectible5" parent="." instance=ExtResource( 11 )]
-transform = Transform( -0.829576, 0.345097, -0.438991, 0.480057, 0.0392048, -0.876361, -0.285219, -0.937748, -0.198189, -47.6959, 55.7363, -3.27151 )
+transform = Transform( -0.829576, 0.345097, -0.438991, 0.480057, 0.0392048, -0.876361, -0.285219, -0.937748, -0.198189, -47.6959, 57.2528, -3.59112 )
+current_island = NodePath("../floating_island10")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/MenuFadeIn = SubResource( 4 )

@@ -37,21 +37,21 @@ func _physics_process(delta):
 		if result:
 			if result.collider.is_in_group("Sun"):
 				var sun_vector = (global_translation - Sun.translation).normalized()
-				var angle = sun_vector.signed_angle_to(-global_transform.basis.z, Vector3.UP)
+				var mirror_dir = -global_transform.basis.z.normalized()
+				var angle = sun_vector.signed_angle_to(mirror_dir, Vector3.UP)
 				#print(str(rad2deg(angle)))
 				if !(angle >= -PI / 2.0 and angle <= PI / 2.0):
-					var mirror_dir = -global_transform.basis.z.normalized()
-					var reflect_dir = -sun_vector.reflect(-global_transform.basis.z)
+					var reflect_dir = -sun_vector.reflect(mirror_dir)
 					Reflection.look_at_from_position(global_translation, global_translation + 5.0 * reflect_dir, Vector3.UP)
 					light_on = true
 
-	var sun_vector1 = (global_translation - Sun.translation).normalized()
-	var mirror_dir = sun_vector1.reflect(-global_transform.basis.z)
-	$ImmediateGeometry.reflected = global_translation + 5.0 * mirror_dir
-	$ImmediateGeometry.normal = -global_transform.basis.z
+#	var sun_vector1 = (global_translation - Sun.translation).normalized()
+#	var mirror_vector = -global_transform.basis.z.normalized()
+#	var reflect_dir = sun_vector1.reflect(mirror_vector)
+#	$ImmediateGeometry.reflected = global_translation + 5.0 * reflect_dir
+#	$ImmediateGeometry.normal = -global_transform.basis.z
 
 	if Reflection:
 		Reflection.visible = light_on
-		#Reflection.set_enabled(light_on)
 		mirror_mat.emission_enabled = light_on
 	

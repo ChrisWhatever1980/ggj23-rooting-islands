@@ -10,15 +10,157 @@ SWAP_STICKS;Swap Movement Stick;Stick für Bewegung tauschen
 CREDITS;Credits;Mitwirkende
 HOW_TO_PLAY;How to Play;Spielanleitung
 CONTINUE;Continue;Fortsetzen
-MESSAGE1;Hello Dear, it's so good to see you. I think I've seen people on the other islands, but I didn't dare hope.;Hallo Liebes, es ist so schön, dich zu sehen. Ich glaube, ich habe schon Leute auf den anderen Inseln gesehen, aber ich habe mich nicht getraut zu hoffen.
+MESSAGE1;Hello Dear, it's so good to see you. I think I've seen people on the other islands, but I didn't dare to hope.;Hallo Liebes, es ist so schön, dich zu sehen. Ich glaube, ich habe schon Leute auf den anderen Inseln gesehen, aber ich habe mich nicht getraut zu hoffen.
 MESSAGE2;You came in that thing? You're braver than I thought. Harrumph! Anyways, well done, kiddo.;Du fliegst mit dem Ding da? Du bist mutiger als ich dachte. Grummel grummel, naja, gut gemacht, Kumpel.
 MESSAGE3;I used to play ball with another kid on that island over there. A few months ago he stopped coming out of his house. Now I could go over there and ask for him, but I am afraid.;Ich habe immer mit einem Kind von der Insel da drüben Ball gespielt. Seit einigen Monaten kommt er nicht mehr aus dem Haus. Jetzt könnte ich rübergehen und nach ihm fragen, aber ich trau mich nicht.
-MESSAGE4;One morning my husband jumped off the island and drifted away. Sometimes I want to follow him.;Eines Morgens ist mein Mann von der Insel gesprungen und davongetrieben. Manchmal will ich es ihm gleichtun.
-MESSAGE5;Message 5;Nachricht 5
-MESSAGE6;Message 6;Nachricht 6
-NEW_RIDE_MSG;You did well. Thanks to you these drifting memories have new roots. Enjoy your new ride!;Das hast Du gut gemacht. Dank Dir haben diese treibenden Erinnerungen neue Wurzeln. Genieße Dein neues Gefährt!
+MESSAGE4;One morning my husband jumped off the island and just drifted away. Sometimes I want to follow him.;Eines Morgens ist mein Mann von der Insel gesprungen und einfach davongetrieben. Manchmal will ich es ihm gleichtun.
+MESSAGE5;I am in love with the girl on another island. We have been throwing letters to each other. I can't wait to meet her.;Ich bin in ein Mädchen von einer anderen Insel verliebt. Wir haben uns Briefe zugeworfen. Ich kann es kaum erwarten, sie zu treffen.
+MESSAGE6;Why are we here? What happened to us? What is beyond the islands? Why are there mirrors floating around? Maybe now we can look for answers. Together.;Warum sind wir hier? Was ist uns zugestoßen Was liegt hinter den Inseln? Warum schweben Spiegel zwischen den Inseln? Vielleicht können wir jetzt nach Antworten suchen. Zusammen.
+NEW_RIDE_MSG;You did well! Thanks to you these drifting memories have new roots. Enjoy your new ride!;Das hast Du gut gemacht! Dank Dir haben diese treibenden Erinnerungen neue Wurzeln. Genieße Dein neues Gefährt!
 CREDITS_DEVELOPER;Developer;Entwickler
-CREDITS_GYROCOPTER_SOUND;Gyrocopter Sound;Gyrokopter Ton
+CREDITS_GYROCOPTER_SOUND;Resources;Ressourcen
 LANGUAGE:;Language:;Sprache:
 OPTION_GERMAN;German;Deutsch
 OPTION_ENGLISH;English;Englisch
+CHEATS;Cheats;Mogeleien
+KEYBOARD;Keyboard;Tastatur
+GAMEPAD;Gamepad;Gamepad
+GAMEPAD_INPUT_NINTENDO;"Nintendo
+Y
+L2
+L
+X
+B
+A
+ 
+ 
++";"Nintendo
+Y
+L2
+L
+X
+B
+A
+ 
+ 
++"
+GAMEPAD_INPUT_SONY;"Playstation
+Square
+L2
+L1
+Triangle
+Cross
+Circle
+ 
+ 
+Start";"Playstation
+Viereck
+L2
+L1
+Dreieck
+Kreuz
+Kreis
+ 
+ 
+Start"
+GAMEPAD_INPUT_XBOX;"XBox
+X
+L2
+L1
+Y
+A
+B
+Right stick
+Left stick
+Options";"XBox
+X
+L2
+L1
+Y
+A
+B
+Rechter Knüppel
+Linker Knüppel
+Options"
+GAMEPAD_CONTROLS;" 
+Collect a resource
+Sink
+Rise
+Abort mirror deploy
+Shoot water
+Deploy mirror
+Move chopper
+Rotate camera
+Pause";" 
+Ressource einsammeln
+Sinken
+Steigen
+Spiegelplatzierung abbrechen
+Wasser spritzen
+Spiegel platzieren
+Schrauber bewegen
+Kamera rotieren
+Pause"
+KEYBOARD_INPUT;"K
+-
++
+Q
+V
+X
+W
+S
+A
+D
+P
+cursor keys";"K
+-
++
+Q
+V
+X
+W
+S
+A
+D
+P
+Pfeiltasten"
+KEYBOARD_CONTROLS;"Collect a resource
+Sink
+Rise
+Abort mirror deploy
+Shoot water
+Deploy mirror
+Move forward
+Move backward
+Move left
+Move right
+Rotate camera
+Pause";"Ressource einsammeln
+Sinken
+Steigen
+Spiegelplatzierung abbrechen
+Wasser spritzen
+Spiegel platzieren
+Vorwärts fliegen
+Rückwärts fliegen
+Nach links fliegen
+Nach rechts fliegen
+Kamera drehen
+Pause"
+CHEATS_LIST;"Trigger happy end
+Unlock eletric chopper
+Gas chopper
+Old chopper
+Electric chopper
+Hold for turbo
+give mirror
+give water
+toggle debug camera";"Glückliches Ende zeigen
+Elektrischer Schrauber freischalten
+Benzinschrauber zeigen
+Platzhalterschrauber zeigen
+Elektrischen Schrauber zeigen
+Halten für Turbo
+Spiegel auffüllen
+Wasser auffüllen
+Fehlersuchkamera schalten"

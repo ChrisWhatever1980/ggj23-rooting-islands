@@ -62,6 +62,8 @@ func abort_deploy():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_camera"):
 		debug_camera.current = !debug_camera.current
+		if !debug_camera.current:
+			GameEvents.emit_signal("switch_to_player_cam")
 
 	if deployed_mirror:
 		var x_axis = deployed_mirror.transform.basis.x

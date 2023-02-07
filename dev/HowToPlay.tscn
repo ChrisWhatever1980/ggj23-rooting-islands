@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://HowToPlay.gd" type="Script" id=1]
 [ext_resource path="res://OptionsBackButton.gd" type="Script" id=2]
 [ext_resource path="res://fonts/KaushanScript-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://ControlsRichText2.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -29,13 +28,13 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="ScrollContainerInner" type="VBoxContainer" parent="ScrollContainer"]
-margin_right = 388.0
-margin_bottom = 551.0
+margin_right = 644.0
+margin_bottom = 425.0
 rect_pivot_offset = Vector2( -667, -100 )
 size_flags_horizontal = 3
 
 [node name="HowToPlayLabel" type="Label" parent="ScrollContainer/ScrollContainerInner"]
-margin_right = 388.0
+margin_right = 644.0
 margin_bottom = 59.0
 custom_fonts/font = SubResource( 1 )
 text = "HOW_TO_PLAY"
@@ -44,54 +43,133 @@ valign = 1
 
 [node name="Control" type="Control" parent="ScrollContainer/ScrollContainerInner"]
 margin_top = 63.0
-margin_right = 388.0
+margin_right = 644.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="OptionsBackButton" type="ToolButton" parent="ScrollContainer/ScrollContainerInner"]
 margin_top = 87.0
-margin_right = 388.0
+margin_right = 644.0
 margin_bottom = 109.0
 text = "BACK_TO_MENU"
 script = ExtResource( 2 )
 
 [node name="Control3" type="Control" parent="ScrollContainer/ScrollContainerInner"]
 margin_top = 113.0
-margin_right = 388.0
+margin_right = 644.0
 margin_bottom = 133.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="ControlsRichText" type="RichTextLabel" parent="ScrollContainer/ScrollContainerInner"]
+[node name="GamepadLabel" type="Label" parent="ScrollContainer/ScrollContainerInner"]
 margin_top = 137.0
-margin_right = 388.0
-margin_bottom = 339.0
+margin_right = 644.0
+margin_bottom = 151.0
+text = "GAMEPAD"
+
+[node name="Gamepad" type="HBoxContainer" parent="ScrollContainer/ScrollContainerInner"]
+margin_top = 155.0
+margin_right = 644.0
+margin_bottom = 169.0
+
+[node name="GamepadInputSony" type="Label" parent="ScrollContainer/ScrollContainerInner/Gamepad"]
+margin_right = 152.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-bbcode_enabled = true
-bbcode_text = "[table=2][cell]K[/cell][cell]collectaresource[/cell][cell]-[/cell][cell]Sink[/cell][cell]+[/cell][cell]Rise[/cell][cell]Q[/cell][cell]Abortmirrordeploy[/cell][cell]V[/cell][cell]shootwater[/cell][cell]X[/cell][cell]deploymirror[/cell][cell]W[/cell][cell]moveforward[/cell][cell]S[/cell][cell]movebackward[/cell][cell]A[/cell][cell]moveleft[/cell][cell]D[/cell][cell]moveright[/cell][cell]cursorkeys[/cell][cell]rotatecamera[/cell][/table]"
-text = "Kcollectaresource-Sink+RiseQAbortmirrordeployVshootwaterXdeploymirrorWmoveforwardSmovebackwardAmoveleftDmoverightcursorkeysrotatecamera"
-fit_content_height = true
+text = "GAMEPAD_INPUT_SONY"
+
+[node name="GamepadInputXBox" type="Label" parent="ScrollContainer/ScrollContainerInner/Gamepad"]
+margin_left = 156.0
+margin_right = 309.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GAMEPAD_INPUT_XBOX"
+
+[node name="GamepadInputNintendo" type="Label" parent="ScrollContainer/ScrollContainerInner/Gamepad"]
+margin_left = 313.0
+margin_right = 500.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GAMEPAD_INPUT_NINTENDO"
+
+[node name="GamepadDesc" type="Label" parent="ScrollContainer/ScrollContainerInner/Gamepad"]
+margin_left = 504.0
+margin_right = 644.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GAMEPAD_CONTROLS"
 
 [node name="Control2" type="Control" parent="ScrollContainer/ScrollContainerInner"]
-margin_top = 343.0
-margin_right = 388.0
-margin_bottom = 363.0
+margin_top = 173.0
+margin_right = 644.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="KeyboardLabel" type="Label" parent="ScrollContainer/ScrollContainerInner"]
+margin_top = 197.0
+margin_right = 644.0
+margin_bottom = 211.0
+text = "KEYBOARD"
+
+[node name="Keyboard" type="HBoxContainer" parent="ScrollContainer/ScrollContainerInner"]
+margin_top = 215.0
+margin_right = 644.0
+margin_bottom = 229.0
+
+[node name="KeyboardInput" type="Label" parent="ScrollContainer/ScrollContainerInner/Keyboard"]
+margin_right = 320.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "KEYBOARD_INPUT"
+
+[node name="KeyboardDesc" type="Label" parent="ScrollContainer/ScrollContainerInner/Keyboard"]
+margin_left = 324.0
+margin_right = 644.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "KEYBOARD_CONTROLS"
+
+[node name="Control4" type="Control" parent="ScrollContainer/ScrollContainerInner"]
+margin_top = 233.0
+margin_right = 644.0
+margin_bottom = 253.0
 rect_min_size = Vector2( 0, 20 )
 
 [node name="CheatsLabel" type="Label" parent="ScrollContainer/ScrollContainerInner"]
-margin_top = 367.0
-margin_right = 388.0
-margin_bottom = 381.0
-text = "Cheats"
+margin_top = 257.0
+margin_right = 644.0
+margin_bottom = 271.0
+text = "CHEATS"
 
-[node name="ControlsRichText2" type="RichTextLabel" parent="ScrollContainer/ScrollContainerInner"]
-margin_top = 385.0
-margin_right = 388.0
-margin_bottom = 551.0
-focus_mode = 2
-bbcode_enabled = true
-bbcode_text = "[table=2][cell]H[/cell][cell]triggerhappyend[/cell][cell]U[/cell][cell]Unlockelectricgyrocopter[/cell][cell]7[/cell][cell]gaschopper[/cell][cell]8[/cell][cell]oldchopper[/cell][cell]9[/cell][cell]electricchopper[/cell][cell]shift[/cell][cell]holdforturbo[/cell][cell]2[/cell][cell]givemirror[/cell][cell]1[/cell][cell]givewater[/cell][cell]C[/cell][cell]switchtodebugcamera[/cell][/table]"
-text = "HtriggerhappyendUUnlockelectricgyrocopter7gaschopper8oldchopper9electricchoppershiftholdforturbo2givemirror1givewaterCswitchtodebugcamera"
-fit_content_height = true
-selection_enabled = true
-script = ExtResource( 4 )
+[node name="Cheats" type="HBoxContainer" parent="ScrollContainer/ScrollContainerInner"]
+margin_top = 275.0
+margin_right = 644.0
+margin_bottom = 425.0
+
+[node name="CheatsInput" type="Label" parent="ScrollContainer/ScrollContainerInner/Cheats"]
+margin_right = 320.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "H
+U
+7
+8
+9
+shift
+2
+1
+C"
+
+[node name="CheatsDesc" type="Label" parent="ScrollContainer/ScrollContainerInner/Cheats"]
+margin_left = 324.0
+margin_right = 644.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "CHEATS_LIST"

@@ -1,10 +1,19 @@
 extends Area
 
 
+export(NodePath) onready var current_island = get_node(current_island) as Node
+
+
 var growing = false
 var water = null
 var light = null
 var receiving_light_time = 0.0
+var exclude_player
+var exclude_camera
+
+func _ready():
+	exclude_player = get_parent().get_node("Player")
+	exclude_camera = get_parent().get_node("Camera")
 
 
 func _physics_process(delta: float) -> void:
@@ -12,7 +21,6 @@ func _physics_process(delta: float) -> void:
 	if growing:
 		return
 
-	var water_pos = Vector3.ZERO
 	var water_distance = 10000.0
 
 	var water_check = false
@@ -21,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	var water_light_targets = get_tree().get_nodes_in_group("Water_and_Light")
 	for lt in water_light_targets:
 		if lt.is_in_group("WaterCollectible"):
-			if !lt.viable_root_target and !lt.shot_by_player:
+			if (!lt.viable_root_target and !lt.shot_by_player) or lt.target_island == current_island:
 				continue
 			else:
 				var seed_water_distance = lt.translation.distance_to(translation)
@@ -29,14 +37,13 @@ func _physics_process(delta: float) -> void:
 					water_distance = seed_water_distance
 					water = lt
 					water_check = true
-					water_pos = lt.translation
 
 		if lt.is_in_group("Sun") or lt.is_in_group("MirrorCollectible"):
 			if !lt.light_on:
 				continue
 
 		var space_state = get_world().direct_space_state
-		var result = space_state.intersect_ray(translation, lt.translation, [self], 0x7FFFFFFF, true, true)
+		var result = space_state.intersect_ray(translation, lt.translation, [self, exclude_camera, exclude_player], 0x7FFFFFFF, true, true)
 
 		if result.size() > 0:
 			if result.collider.is_in_group("Islands"):
@@ -54,6 +61,8 @@ func _physics_process(delta: float) -> void:
 	if !light_check:
 		light = null
 		receiving_light_time = 0.0
+
+	#print(name + ": water " + str(water_check) + ", light " + str(light_check))
 
 	if water and light:
 		# water is present

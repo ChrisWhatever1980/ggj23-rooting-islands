@@ -49,8 +49,6 @@ func start_grow(pos, target, island):
 
 func _process(delta: float) -> void:
 
-	var mesh_height = $MeshInstance.mesh.height
-
 	var anim_speed = 0.1
 	if !stopped and grow < 1.0:
 		grow += delta * anim_speed
@@ -85,7 +83,6 @@ func _process(delta: float) -> void:
 			yield(get_tree().create_timer(0.5), "timeout")
 
 			GameEvents.emit_signal("switch_to_relative_cam", target_island)
-
 
 
 func _on_RootSoundTimer_timeout() -> void:
