@@ -90,8 +90,8 @@ Abort mirror deploy
 Shoot water
 Deploy mirror
 Move chopper
-Rotate camera
-Pause";" 
+Pause
+Rotate camera";" 
 Ressource einsammeln
 Sinken
 Steigen
@@ -99,8 +99,8 @@ Spiegelplatzierung abbrechen
 Wasser spritzen
 Spiegel platzieren
 Schrauber bewegen
-Kamera rotieren
-Pause"
+Pause
+Kamera rotieren"
 KEYBOARD_INPUT;"K
 -
 +
@@ -134,8 +134,8 @@ Move forward
 Move backward
 Move left
 Move right
-Rotate camera
-Pause";"Ressource einsammeln
+Pause
+Rotate camera";"Ressource einsammeln
 Sinken
 Steigen
 Spiegelplatzierung abbrechen
@@ -145,8 +145,8 @@ Vorwärts fliegen
 Rückwärts fliegen
 Nach links fliegen
 Nach rechts fliegen
-Kamera drehen
-Pause"
+Pause
+Kamera drehen"
 CHEATS_LIST;"Trigger happy end
 Unlock eletric chopper
 Gas chopper
@@ -164,3 +164,14 @@ Halten für Turbo
 Spiegel auffüllen
 Wasser auffüllen
 Fehlersuchkamera schalten"
+INSTRUCTIONS;Instructions;Anleitung
+INSTRUCTIONS_TEXT;"Fly around with your gyrochopper and collect water and mirrors. 
+Shoot the water towards an island you want to connect.
+Place a mirror and adjust it to reflect light onto the seed on another island.
+Watch as beautiful connections are made.
+Find all the seeds and use them to root the islands together.";"Fliege mit deinem Schrauber herum und sammle Wasser und Spiegel.
+Schieße das Wasser auf eine Insel, die Du verbinden willst.
+Platziere einen Spiegel und stelle ihn so ein, 
+dass er das Licht auf den Samen auf einer anderen Insel reflektiert.
+Beobachte, wie schöne Verbindungen entstehen.
+Finde alle Samen und verwende sie, um die Inseln miteinander zu verbinden."

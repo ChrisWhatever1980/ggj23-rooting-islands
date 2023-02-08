@@ -17,8 +17,7 @@
 [ext_resource path="res://MessageBox.gd" type="Script" id=15]
 [ext_resource path="res://music/music.mp3" type="AudioStream" id=16]
 [ext_resource path="res://DefaultEnvironment.tres" type="Environment" id=17]
-[ext_resource path="res://Relative.tscn" type="PackedScene" id=18]
-[ext_resource path="res://HappyEnd.gd" type="Script" id=19]
+[ext_resource path="res://HappyEnd.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -125,6 +124,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "MenuFadeOut"
@@ -140,6 +151,33 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [node name="World" type="Spatial"]
@@ -326,6 +364,7 @@ current_island = NodePath("../floating_island10")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/MenuFadeIn = SubResource( 4 )
 anims/MenuFadeOut = SubResource( 5 )
+anims/RESET = SubResource( 9 )
 
 [node name="Reflection0" parent="." instance=ExtResource( 13 )]
 visible = false
@@ -361,37 +400,4 @@ far = 1000.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 17 )
 
-[node name="HappyEnd" type="Spatial" parent="."]
-transform = Transform( 0.0580693, 0, -0.998313, 0, 1, 0, 0.998313, 0, 0.0580693, 181.72, 0, 0 )
-visible = false
-script = ExtResource( 19 )
-
-[node name="floating_island" parent="HappyEnd" instance=ExtResource( 3 )]
-
-[node name="Relative1" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 0, 14.9059, 4.8129 )
-
-[node name="Relative2" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 3.30608, 13.7513, 4.81287 )
-
-[node name="Relative3" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -4.18124, 15.1766, 4.81287 )
-
-[node name="Relative4" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -2.24249, 13.6907, 7.724 )
-
-[node name="Relative7" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -2.44601, 15.3627, 3.42322 )
-
-[node name="Relative8" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -0.507261, 15.0585, 6.33435 )
-
-[node name="Relative5" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 1.67368, 13.6884, 7.724 )
-
-[node name="Relative6" parent="HappyEnd" instance=ExtResource( 18 )]
-transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 2.8647, 14.6455, 3.09747 )
-
-[node name="HappyEndCamera" type="Camera" parent="HappyEnd"]
-transform = Transform( -1, 3.55271e-15, -8.74228e-08, -4.78938e-08, 0.836583, 0.547841, 7.31364e-08, 0.547841, -0.836583, 0, 32.5734, -16.0357 )
-far = 1000.0
+[node name="HappyEnd" parent="." instance=ExtResource( 18 )]

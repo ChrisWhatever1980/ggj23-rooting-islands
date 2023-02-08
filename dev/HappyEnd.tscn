@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://FloatingIsland.gd" type="Script" id=1]
+[ext_resource path="res://HappyEnd.gd" type="Script" id=2]
+[ext_resource path="res://Relative.gd" type="Script" id=3]
+[ext_resource path="res://FloatingIsland.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Relative.tscn" type="PackedScene" id=5]
+
+[node name="HappyEnd" type="Spatial"]
+transform = Transform( 0.0580693, 0, -0.998313, 0, 1, 0, 0.998313, 0, 0.0580693, 181.72, 0, 0 )
+visible = false
+script = ExtResource( 2 )
+
+[node name="floating_island" type="StaticBody" parent="." groups=["Islands"] instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+
+[node name="Relative1" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 0, 14.9059, 4.8129 )
+script = ExtResource( 3 )
+
+[node name="Relative2" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 3.30608, 13.7513, 4.81287 )
+script = ExtResource( 3 )
+
+[node name="Relative3" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -4.18124, 15.1766, 4.81287 )
+script = ExtResource( 3 )
+
+[node name="Relative4" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -2.24249, 13.6907, 7.724 )
+script = ExtResource( 3 )
+
+[node name="Relative7" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -2.44601, 15.3627, 3.42322 )
+script = ExtResource( 3 )
+
+[node name="Relative8" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, -0.507261, 15.0585, 6.33435 )
+script = ExtResource( 3 )
+
+[node name="Relative5" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 1.67368, 13.6884, 7.724 )
+script = ExtResource( 3 )
+
+[node name="Relative6" type="Spatial" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.991534, 0, -0.129851, 0, 1, 0, 0.129851, 0, -0.991534, 2.8647, 14.6455, 3.09747 )
+script = ExtResource( 3 )
+
+[node name="HappyEndCamera" type="Camera" parent="."]
+transform = Transform( -1, 3.55271e-15, -8.74228e-08, -4.78938e-08, 0.836583, 0.547841, 7.31364e-08, 0.547841, -0.836583, 0, 32.5734, -16.0357 )
+far = 1000.0
