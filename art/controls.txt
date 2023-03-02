@@ -1,0 +1,7 @@
+pause				Start, Options, +
+collect resource	Square, X, Y
+sink				L2
+rise				L, L1
+abort deploy		Triangle, Y, X
+shoot water			Cross, A, B
+deploy mirror		Circle, B, A
