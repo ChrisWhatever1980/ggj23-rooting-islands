@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 
 var speed = 10.0
@@ -9,7 +9,7 @@ var target_island
 var shot_by_player = false
 
 
-onready var water_sound = $water_sound
+@onready var water_sound = $water_sound
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	translation += velocity * speed * delta
+	position += velocity * speed * delta
 
 
 func _on_WaterCollectible_body_entered(body: Node) -> void:

@@ -1,25 +1,38 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://lh5yqn6ghqwq"]
 
-[ext_resource path="res://Ui.theme" type="Theme" id=1]
-[ext_resource path="res://StartMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://OptionsMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://CreditsMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://HowToPlay.tscn" type="PackedScene" id=5]
+[ext_resource type="Theme" path="res://Ui.theme" id="1"]
+[ext_resource type="PackedScene" uid="uid://dgd0x80je2krd" path="res://StartMenu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ibe1mmo4aoo2" path="res://OptionsMenu.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://CreditsMenu.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://HowToPlay.tscn" id="5"]
 
 [node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.164706, 0.164706, 0.164706, 0.698039 )
+color = Color(0.164706, 0.164706, 0.164706, 0.698039)
 
-[node name="StartMenu" parent="ColorRect" instance=ExtResource( 2 )]
+[node name="StartMenu" parent="ColorRect" instance=ExtResource("2")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
-[node name="OptionsMenu" parent="ColorRect" instance=ExtResource( 3 )]
+[node name="OptionsMenu" parent="ColorRect" instance=ExtResource("3")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
-[node name="CreditsMenu" parent="ColorRect" instance=ExtResource( 4 )]
+[node name="CreditsMenu" parent="ColorRect" instance=ExtResource("4")]
+anchors_preset = 0
 
-[node name="HowToPlay" parent="ColorRect" instance=ExtResource( 5 )]
+[node name="HowToPlay" parent="ColorRect" instance=ExtResource("5")]
+anchors_preset = 0

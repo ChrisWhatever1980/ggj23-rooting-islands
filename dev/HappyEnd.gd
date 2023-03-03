@@ -1,15 +1,15 @@
-extends Spatial
+extends Node3D
 
 
-var colors = [Color.brown, Color.burlywood, Color.chocolate, 
-	Color.darkslateblue, Color.gold, Color.hotpink, 
-	Color.darkslategray, Color.seagreen]
+var colors = [Color.BROWN, Color.BURLYWOOD, Color.CHOCOLATE, 
+	Color.DARK_SLATE_BLUE, Color.GOLD, Color.HOT_PINK, 
+	Color.DARK_SLATE_GRAY, Color.SEA_GREEN]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	GameEvents.connect("show_happy_end", self, "show_happy_end")
+	GameEvents.show_happy_end.connect(show_happy_end)
 	$Relative1.set_color(colors[0])
 	$Relative2.set_color(colors[1])
 	$Relative3.set_color(colors[2])
@@ -21,12 +21,12 @@ func _ready() -> void:
 
 
 func show_happy_end():
-	yield(get_tree().create_timer(1.0), "timeout")
+	await get_tree().create_timer(1.0).timeout
 	visible = true
 	$HappyEndCamera.current = true
 	GameEvents.emit_signal("fade_in")
 	GameEvents.emit_signal("relative_wave")
-	yield(get_tree().create_timer(2.0), "timeout")
+	await get_tree().create_timer(2.0).timeout
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

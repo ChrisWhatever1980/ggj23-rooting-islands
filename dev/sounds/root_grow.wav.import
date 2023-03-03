@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/root_grow.wav-e31caa5206b8d3373ad5825c21d86e62.sample"
+type="AudioStreamWAV"
+uid="uid://dghn2yg36a7oq"
+path="res://.godot/imported/root_grow.wav-e31caa5206b8d3373ad5825c21d86e62.sample"
 
 [deps]
 
 source_file="res://sounds/root_grow.wav"
-dest_files=[ "res://.import/root_grow.wav-e31caa5206b8d3373ad5825c21d86e62.sample" ]
+dest_files=["res://.godot/imported/root_grow.wav-e31caa5206b8d3373ad5825c21d86e62.sample"]
 
 [params]
 

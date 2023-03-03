@@ -1,77 +1,65 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://dgd0x80je2krd"]
 
-[ext_resource path="res://StartMenuOptionsButton.gd" type="Script" id=1]
-[ext_resource path="res://fonts/KaushanScript-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Exit.gd" type="Script" id=3]
-[ext_resource path="res://StartGame.gd" type="Script" id=4]
-[ext_resource path="res://StartMenuCredits.gd" type="Script" id=5]
-[ext_resource path="res://HowToPlayButton.gd" type="Script" id=6]
-
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 2 )
+[ext_resource type="Script" path="res://StartMenuOptionsButton.gd" id="1"]
+[ext_resource type="Script" path="res://StartMenu.gd" id="1_a4xpi"]
+[ext_resource type="Script" path="res://Exit.gd" id="3"]
+[ext_resource type="Script" path="res://StartGame.gd" id="4"]
+[ext_resource type="Script" path="res://StartMenuCredits.gd" id="5"]
+[ext_resource type="Script" path="res://HowToPlayButton.gd" id="6"]
 
 [node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource("1_a4xpi")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 391.0
-margin_top = 164.0
-margin_right = 633.0
-margin_bottom = 435.0
-custom_constants/separation = 10
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 242.0
-margin_bottom = 59.0
-custom_fonts/font = SubResource( 1 )
+layout_mode = 2
 text = "GAME_TITLE"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 69.0
-margin_right = 242.0
-margin_bottom = 119.0
-rect_min_size = Vector2( 0, 50 )
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
 [node name="StartGame" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 129.0
-margin_right = 242.0
-margin_bottom = 149.0
+layout_mode = 2
 focus_previous = NodePath("../Exit")
 text = "START_GAME"
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="HowToPlay" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 159.0
-margin_right = 242.0
-margin_bottom = 179.0
+layout_mode = 2
 text = "HOW_TO_PLAY"
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="Options" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 189.0
-margin_right = 242.0
-margin_bottom = 209.0
+layout_mode = 2
 text = "OPTIONS_MENU"
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 219.0
-margin_right = 242.0
-margin_bottom = 239.0
+layout_mode = 2
 text = "CREDITS"
-script = ExtResource( 5 )
+script = ExtResource("5")
 
-[node name="Exit" type="ToolButton" parent="CenterContainer/VBoxContainer"]
-margin_top = 249.0
-margin_right = 242.0
-margin_bottom = 271.0
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
 focus_next = NodePath("../StartGame")
 text = "QUIT_GAME"
-script = ExtResource( 3 )
+script = ExtResource("3")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

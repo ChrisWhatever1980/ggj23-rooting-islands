@@ -1,4 +1,4 @@
-extends StaticBody
+extends StaticBody3D
 
 
 var light_on = true

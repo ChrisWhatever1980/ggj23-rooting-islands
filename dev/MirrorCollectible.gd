@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 
 var Sun = null
@@ -7,7 +7,7 @@ var target = null
 var collectable = true
 var mirror_mat
 var light_on = false
-export(NodePath) var ReflectionPath = null
+@export var ReflectionPath: NodePath
 var Reflection = null
 
 
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if collectable:
 		rotate(rot_axis, delta)
 	if target:
-		translation = translation.move_toward(target, delta)
+		position = position.move_toward(target, delta)
 
 
 func _physics_process(delta):
@@ -32,24 +32,26 @@ func _physics_process(delta):
 
 	light_on = false
 	if Sun:
-		var space_state = get_world().direct_space_state
-		var result = space_state.intersect_ray(translation, Sun.translation, [self])
+		var space_state = get_world_3d().direct_space_state
+		
+		var ray_params = PhysicsRayQueryParameters3D.create(position, Sun.position, 0xFFFFFFFF, [self])
+		var result = space_state.intersect_ray(ray_params)
 		if result:
 			if result.collider.is_in_group("Sun"):
-				var sun_vector = (global_translation - Sun.translation).normalized()
+				var sun_vector = (global_position - Sun.position).normalized()
 				var mirror_dir = -global_transform.basis.z.normalized()
 				var angle = sun_vector.signed_angle_to(mirror_dir, Vector3.UP)
-				#print(str(rad2deg(angle)))
+				#print(str(rad_to_deg(angle)))
 				if !(angle >= -PI / 2.0 and angle <= PI / 2.0):
 					var reflect_dir = -sun_vector.reflect(mirror_dir)
-					Reflection.look_at_from_position(global_translation, global_translation + 5.0 * reflect_dir, Vector3.UP)
+					Reflection.look_at_from_position(global_position, global_position + 5.0 * reflect_dir, Vector3.UP)
 					light_on = true
 
-#	var sun_vector1 = (global_translation - Sun.translation).normalized()
+#	var sun_vector1 = (global_position - Sun.position).normalized()
 #	var mirror_vector = -global_transform.basis.z.normalized()
 #	var reflect_dir = sun_vector1.reflect(mirror_vector)
-#	$ImmediateGeometry.reflected = global_translation + 5.0 * reflect_dir
-#	$ImmediateGeometry.normal = -global_transform.basis.z
+#	$ImmediateMesh.reflected = global_position + 5.0 * reflect_dir
+#	$ImmediateMesh.normal = -global_transform.basis.z
 
 	if Reflection:
 		Reflection.visible = light_on

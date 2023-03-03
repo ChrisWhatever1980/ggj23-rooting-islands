@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/motor.wav-f7d45821f5e6c2135faa1a8819014566.sample"
+type="AudioStreamWAV"
+uid="uid://blkekkydlevg6"
+path="res://.godot/imported/motor.wav-f7d45821f5e6c2135faa1a8819014566.sample"
 
 [deps]
 
 source_file="res://sounds/motor.wav"
-dest_files=[ "res://.import/motor.wav-f7d45821f5e6c2135faa1a8819014566.sample" ]
+dest_files=["res://.godot/imported/motor.wav-f7d45821f5e6c2135faa1a8819014566.sample"]
 
 [params]
 

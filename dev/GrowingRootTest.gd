@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 var RootScene = preload("res://search_root.tscn")
@@ -11,5 +11,5 @@ func _unhandled_input(event):
 
 	if false:#Input.is_action_just_pressed("ui_accept"):
 		for i in range(0, 5):
-			var new_root = RootScene.instance()
+			var new_root = RootScene.instantiate()
 			add_child(new_root)

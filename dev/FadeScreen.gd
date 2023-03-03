@@ -2,5 +2,5 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	GameEvents.connect("fade_in", $AnimationPlayer, "play", ["fade_in"])
-	GameEvents.connect("fade_out", $AnimationPlayer, "play", ["fade_out"])
+	GameEvents.fade_in.connect(Callable($AnimationPlayer,"play").bind("fade_in"))
+	GameEvents.fade_out.connect(Callable($AnimationPlayer,"play").bind("fade_out"))

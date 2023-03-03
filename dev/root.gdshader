@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform vec4 color : hint_color;
+uniform vec4 color : source_color;
 uniform float grow;
 varying float v_alpha;
 

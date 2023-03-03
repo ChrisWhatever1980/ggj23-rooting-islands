@@ -1,9 +1,6 @@
 extends Button
 
 func _ready():
-	self.connect("pressed", self, "on_pressed")
+	self.pressed.connect(on_pressed)
 
 func on_pressed():
-	get_node("../../..").visible = false
-	var test = get_node("../../../../CreditsMenu")
-	test.visible = true

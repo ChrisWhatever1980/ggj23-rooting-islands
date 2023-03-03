@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 # Declare member variables here. Examples:
@@ -16,8 +16,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	$MirrorCollectible/ImmediateGeometry.sun = $Sun.translation
-	$MirrorCollectible/ImmediateGeometry.mirror = $MirrorCollectible.translation
+	$MirrorCollectible/ImmediateMesh.sun = $Sun.position
+	$MirrorCollectible/ImmediateMesh.mirror = $MirrorCollectible.position
 
 	var deployed_mirror = $MirrorCollectible
 	var x_axis = deployed_mirror.transform.basis.x

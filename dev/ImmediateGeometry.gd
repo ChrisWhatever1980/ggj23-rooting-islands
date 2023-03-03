@@ -1,4 +1,4 @@
-extends ImmediateGeometry
+extends MeshInstance3D
 
 
 var sun = Vector3.ZERO
@@ -15,16 +15,16 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-	clear()
-	begin(Mesh.PRIMITIVE_LINES)
+	mesh.clear_surfaces()
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 
-	add_vertex(to_local(sun))
-	add_vertex(to_local(mirror))
+	mesh.surface_add_vertex(to_local(sun))
+	mesh.surface_add_vertex(to_local(mirror))
 
-	add_vertex(to_local(mirror))
-	add_vertex(to_local(reflected))
+	mesh.surface_add_vertex(to_local(mirror))
+	mesh.surface_add_vertex(to_local(reflected))
 
-	add_vertex(to_local(mirror))
-	add_vertex(to_local(mirror + 5 * normal))
+	mesh.surface_add_vertex(to_local(mirror))
+	mesh.surface_add_vertex(to_local(mirror + 5 * normal))
 
-	end()
+	mesh.surface_end()

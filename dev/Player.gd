@@ -1,8 +1,8 @@
-extends KinematicBody
+extends CharacterBody3D
 
 
-export(NodePath) onready var cam = get_node(cam) as Node
-export(PackedScene) var WaterScene
+@export(NodePath) onready var cam = get_node(cam) as Node
+@export var WaterScene: PackedScene
 
 
 var velocity = Vector3.ZERO
@@ -19,10 +19,10 @@ var electric_gyrocopter_unlocked = false
 
 var relatives_found = 0
 
-onready var Gyrocopter = $GyrocopterRotate
-onready var motor_sound = $MotorSound
-onready var blades_sound = $BladesSound
-onready var waterdrop_sound = $WaterdropSound
+@onready var Gyrocopter = $GyrocopterRotate
+@onready var motor_sound = $MotorSound
+@onready var blades_sound = $BladesSound
+@onready var waterdrop_sound = $WaterdropSound
 
 
 var Water = 0
@@ -30,7 +30,7 @@ var Mirrors = 0
 
 
 func _ready() -> void:
-	GameEvents.connect("unlock_electric_gyrocopter", self, "unlock_electric_gyrocopter")
+	GameEvents.unlock_electric_gyrocopter.connect(unlock_electric_gyrocopter)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -125,9 +125,10 @@ func _process(delta: float) -> void:
 		look_direction.y = 0.0
 		look_direction = look_direction.normalized()
 		if look_direction.length_squared() > 0.0:
-			Gyrocopter.look_at(translation + 10 * look_direction, Vector3.UP)
+			Gyrocopter.look_at(position + 10 * look_direction, Vector3.UP)
 
-	move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
 
 
 func unlock_electric_gyrocopter():
@@ -146,7 +147,7 @@ func unlock_electric_gyrocopter():
 func deploy_mirror():
 	if Mirrors > 0:
 		deploying_mirror = true
-		GameEvents.emit_signal("deploy_mirror", translation, translation + 5 * transform.basis.z)
+		GameEvents.emit_signal("deploy_mirror", position, position + 5 * transform.basis.z)
 		Mirrors -= 1
 		GameEvents.emit_signal("update_mirror", Mirrors)
 
@@ -154,8 +155,8 @@ func deploy_mirror():
 func shoot_water():
 	if Water > 10:
 		Water -= 10
-		var shootWater = WaterScene.instance()
-		shootWater.translation = translation
+		var shootWater = WaterScene.instantiate()
+		shootWater.position = position
 		shootWater.velocity = -Gyrocopter.global_transform.basis.z
 		shootWater.collectable = false
 		shootWater.shot_by_player = true
@@ -171,7 +172,7 @@ func abort_deploy():
 	#give_mirror()
 
 
-func _on_Area_entered(area: Area) -> void:
+func _on_Area_entered(area: Area3D) -> void:
 	if Water < 100 and area.is_in_group("WaterCollectible"):
 		if area.collectable:
 			#print("Collectable water close")
@@ -182,7 +183,7 @@ func _on_Area_entered(area: Area) -> void:
 		nearby_collectibale = area
 
 
-func _on_Area_exited(area: Area) -> void:
+func _on_Area_exited(area: Area3D) -> void:
 	if area.is_in_group("WaterCollectible") or area.is_in_group("MirrorCollectible"):
 		nearby_collectibale = null
 

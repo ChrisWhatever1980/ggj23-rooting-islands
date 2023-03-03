@@ -8,129 +8,129 @@
 [ext_resource path="res://sounds/blades.wav" type="AudioStream" id=6]
 [ext_resource path="res://sounds/water_drop.wav" type="AudioStream" id=7]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape3D" id=1]
 
-[sub_resource type="SphereShape" id=4]
+[sub_resource type="SphereShape3D" id=4]
 radius = 5.0
 
 [sub_resource type="CapsuleMesh" id=2]
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="StandardMaterial3D" id=13]
 albedo_color = Color( 0.411765, 0.411765, 0.411765, 1 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="BoxMesh" id=3]
 
 [sub_resource type="CylinderMesh" id=9]
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="BoxMesh" id=5]
 
-[sub_resource type="CubeMesh" id=8]
+[sub_resource type="BoxMesh" id=8]
 size = Vector3( 0.1, 0.8, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="StandardMaterial3D" id=10]
 albedo_color = Color( 0.360784, 0.388235, 0.807843, 1 )
 
-[sub_resource type="CubeMesh" id=11]
+[sub_resource type="BoxMesh" id=11]
 size = Vector3( 0.1, 0.8, 0.1 )
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="StandardMaterial3D" id=12]
 albedo_color = Color( 0.121569, 0.12549, 0.188235, 1 )
 
-[node name="Player" type="KinematicBody" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource( 1 )
 WaterScene = ExtResource( 4 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Area" type="Area" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource( 4 )
 
-[node name="GyrocopterRotate" type="Spatial" parent="."]
+[node name="GyrocopterRotate" type="Node3D" parent="."]
 
 [node name="Gyrocopter" parent="GyrocopterRotate" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
-[node name="old_gyrocopter" type="Spatial" parent="GyrocopterRotate"]
+[node name="old_gyrocopter" type="Node3D" parent="GyrocopterRotate"]
 visible = false
 
-[node name="MeshInstance" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter"]
 mesh = SubResource( 2 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 13 )
 
-[node name="Rotor" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter"]
-transform = Transform( 4, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0, 1.10706, 0 )
+[node name="Rotor" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter"]
+transform = Transform3D( 4, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0, 1.10706, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 13 )
 
-[node name="WaterHolder" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter"]
-transform = Transform( 0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, -1.13975, -1.06639, 0.479565 )
+[node name="WaterHolder" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter"]
+transform = Transform3D( 0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, -1.13975, -1.06639, 0.479565 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 13 )
 
-[node name="MirrorHolder" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter"]
-transform = Transform( 0.353553, -0.353553, 0, 0.353553, 0.353553, 0, 0, 0, 1, 1.11254, -1.06639, 0 )
+[node name="MirrorHolder" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter"]
+transform = Transform3D( 0.353553, -0.353553, 0, 0.353553, 0.353553, 0, 0, 0, 1, 1.11254, -1.06639, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 13 )
 
-[node name="Mirror1" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.494369, -0.346737, 0 )
+[node name="Mirror1" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.494369, -0.346737, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../../..")
 
-[node name="Mirror2" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.498164, -0.062124, 0 )
+[node name="Mirror2" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.498164, -0.062124, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../../..")
 
-[node name="Mirror3" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.475396, 0.287, 0 )
+[node name="Mirror3" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.475396, 0.287, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../../..")
 
-[node name="Mirror4" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.49437, -0.673092, 0 )
+[node name="Mirror4" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.49437, -0.673092, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../../..")
 
-[node name="Mirror0" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.471601, 0.609561, 0 )
+[node name="Mirror0" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter/MirrorHolder"]
+transform = Transform3D( 1, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0.471601, 0.609561, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../../..")
 
-[node name="WaterGauge" type="Spatial" parent="GyrocopterRotate/old_gyrocopter"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.13975, -1.47129, 1.526 )
+[node name="WaterGauge" type="Node3D" parent="GyrocopterRotate/old_gyrocopter"]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.13975, -1.47129, 1.526 )
 
-[node name="WaterLevel" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter/WaterGauge"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0683284, -0.402755 )
+[node name="WaterLevel" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter/WaterGauge"]
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0683284, -0.402755 )
 mesh = SubResource( 8 )
 skeleton = NodePath("../../../..")
 material/0 = SubResource( 10 )
 
-[node name="WaterGaugeMesh" type="MeshInstance" parent="GyrocopterRotate/old_gyrocopter"]
-transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1, -1.13975, -1.06853, 1.52567 )
+[node name="WaterGaugeMesh" type="MeshInstance3D" parent="GyrocopterRotate/old_gyrocopter"]
+transform = Transform3D( 1.5, 0, 0, 0, 1, 0, 0, 0, 1, -1.13975, -1.06853, 1.52567 )
 mesh = SubResource( 11 )
 skeleton = NodePath("../../..")
 material/0 = SubResource( 12 )
 
 [node name="electric_gyrocopter" parent="GyrocopterRotate" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+transform = Transform3D( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 visible = false
 
 [node name="MotorSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
-unit_db = 5.0
+volume_db = 5.0
 max_distance = 200.0
 
 [node name="BladesSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
-unit_db = 20.0
+volume_db = 20.0
 max_distance = 200.0
 
 [node name="WaterReloadTimer" type="Timer" parent="."]
@@ -138,8 +138,8 @@ wait_time = 3.0
 
 [node name="WaterdropSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 7 )
-unit_db = 15.0
+volume_db = 15.0
 
-[connection signal="area_entered" from="Area" to="." method="_on_Area_entered"]
-[connection signal="area_exited" from="Area" to="." method="_on_Area_exited"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_Area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_Area_exited"]
 [connection signal="timeout" from="WaterReloadTimer" to="." method="_on_WaterReloadTimer_timeout"]

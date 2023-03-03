@@ -1,7 +1,7 @@
-extends MeshInstance
+extends MeshInstance3D
 
 
-export(NodePath) onready var Sun = get_node(Sun) as Node
+@export(NodePath) onready var Sun = get_node(Sun) as Node
 
 
 # Called when the node enters the scene tree for the first time.

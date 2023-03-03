@@ -1,13 +1,13 @@
-extends Spatial
+extends Node3D
 
 
-onready var waterLevelScale = $WaterTank001/WaterLevelScale
+@onready var waterLevelScale = $WaterTank001/WaterLevelScale
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameEvents.connect("update_water", self, "set_water_level")
-	GameEvents.connect("update_mirror", self, "set_mirror_count")
+	GameEvents.update_water.connect(set_water_level)
+	GameEvents.update_mirror.connect(set_mirror_count)
 
 
 func set_water_level(level):

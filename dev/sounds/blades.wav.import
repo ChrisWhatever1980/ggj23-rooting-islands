@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/blades.wav-66a7043fc3e2212c29c55f637140259b.sample"
+type="AudioStreamWAV"
+uid="uid://27pxdb5td3vs"
+path="res://.godot/imported/blades.wav-66a7043fc3e2212c29c55f637140259b.sample"
 
 [deps]
 
 source_file="res://sounds/blades.wav"
-dest_files=[ "res://.import/blades.wav-66a7043fc3e2212c29c55f637140259b.sample" ]
+dest_files=["res://.godot/imported/blades.wav-66a7043fc3e2212c29c55f637140259b.sample"]
 
 [params]
 

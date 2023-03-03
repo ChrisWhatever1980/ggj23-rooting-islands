@@ -1,18 +1,18 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://models/gyrocopter.glb" type="PackedScene" id=1]
-[ext_resource path="res://addons/kenney_particle_pack/smoke_08.png" type="Texture" id=2]
+[ext_resource path="res://addons/kenney_particle_pack/smoke_08.png" type="Texture2D" id=2]
 [ext_resource path="res://gyrocopterAnimation.tres" type="Animation" id=3]
 [ext_resource path="res://gyrocopter_model.gd" type="Script" id=4]
 [ext_resource path="res://models/mirror_collectible.glb" type="PackedScene" id=5]
 
-[sub_resource type="SpatialMaterial" id=24]
+[sub_resource type="StandardMaterial3D" id=24]
 flags_transparent = true
 albedo_color = Color( 0.498039, 0.854902, 0.411765, 0.305882 )
 
-[sub_resource type="CubeMesh" id=25]
+[sub_resource type="BoxMesh" id=25]
 
-[sub_resource type="SpatialMaterial" id=30]
+[sub_resource type="StandardMaterial3D" id=30]
 albedo_color = Color( 0.0666667, 0.243137, 0.921569, 1 )
 emission_enabled = true
 emission = Color( 0.0156863, 0.117647, 0.94902, 1 )
@@ -21,9 +21,9 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="Gradient" id=26]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=21]
+[sub_resource type="GradientTexture2D" id=21]
 gradient = SubResource( 26 )
 width = 512
 
@@ -34,7 +34,7 @@ _data = [ Vector2( 0, 0.248864 ), 0.0, 1.4, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 
 width = 512
 curve = SubResource( 27 )
 
-[sub_resource type="ParticlesMaterial" id=28]
+[sub_resource type="ParticleProcessMaterial" id=28]
 spread = 5.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
@@ -44,7 +44,7 @@ angle_random = 1.0
 scale_curve = SubResource( 22 )
 color_ramp = SubResource( 21 )
 
-[sub_resource type="SpatialMaterial" id=23]
+[sub_resource type="StandardMaterial3D" id=23]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -61,29 +61,29 @@ material = SubResource( 23 )
 script = ExtResource( 4 )
 
 [node name="WaterTank" parent="." index="6"]
-transform = Transform( 0.486493, 0.0083327, 0.557114, 0, 0.999939, -0.00818225, -0.557148, 0.00727597, 0.486463, -0.0475276, 1.07621, -0.317458 )
+transform = Transform3D( 0.486493, 0.0083327, 0.557114, 0, 0.999939, -0.00818225, -0.557148, 0.00727597, 0.486463, -0.0475276, 1.07621, -0.317458 )
 material/0 = SubResource( 24 )
 
-[node name="WaterLevelScale" type="Spatial" parent="WaterTank" index="0"]
-transform = Transform( 1, 0, -5.96046e-08, 0, 0, -2.91038e-10, 5.96046e-08, 0, 1, -0.000965118, -0.90162, -0.766071 )
+[node name="WaterLevelScale" type="Node3D" parent="WaterTank" index="0"]
+transform = Transform3D( 1, 0, -5.96046e-08, 0, 0, -2.91038e-10, 5.96046e-08, 0, 1, -0.000965118, -0.90162, -0.766071 )
 
-[node name="WaterLevel" type="MeshInstance" parent="WaterTank/WaterLevelScale" index="0"]
-transform = Transform( 0.9, -1.34923e-17, 5.96046e-08, 0, 0.9, 2.03727e-10, -5.96046e-08, -2.03727e-10, 0.9, -0.0403762, 0.90129, -0.040004 )
+[node name="WaterLevel" type="MeshInstance3D" parent="WaterTank/WaterLevelScale" index="0"]
+transform = Transform3D( 0.9, -1.34923e-17, 5.96046e-08, 0, 0.9, 2.03727e-10, -5.96046e-08, -2.03727e-10, 0.9, -0.0403762, 0.90129, -0.040004 )
 mesh = SubResource( 25 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 30 )
 
 [node name="TopRotor" parent="." index="7"]
-transform = Transform( -3.56111, 0, 0.0545972, 0, 0.0251366, 0, -2.39982, 0, -0.0810171, -0.116963, 4.28839, -0.0101452 )
+transform = Transform3D( -3.56111, 0, 0.0545972, 0, 0.0251366, 0, -2.39982, 0, -0.0810171, -0.116963, 4.28839, -0.0101452 )
 
 [node name="LeftStabilizer" parent="." index="9"]
-transform = Transform( 1.20568, -0.00601499, 0, 0.0089034, 0.814539, 0, 0, 0, -0.814561, -3.07121, 0.124103, -0.488559 )
+transform = Transform3D( 1.20568, -0.00601499, 0, 0.0089034, 0.814539, 0, 0, 0, -0.814561, -3.07121, 0.124103, -0.488559 )
 
 [node name="Motor" parent="." index="11"]
-transform = Transform( 0.976179, -0.129966, -0.173735, 0.174673, -0.00423813, 0.984618, -0.128703, -0.991509, 0.0185643, -1.06416, 2.63544, -0.102102 )
+transform = Transform3D( 0.976179, -0.129966, -0.173735, 0.174673, -0.00423813, 0.984618, -0.128703, -0.991509, 0.0185643, -1.06416, 2.63544, -0.102102 )
 
 [node name="Exhaust" parent="." index="12"]
-transform = Transform( 8.8914e-09, 0.214508, 0.0108223, -0.0745865, 2.58449e-08, 1.11142e-09, 0, -0.0314575, 0.0737971, -0.541062, 3.114, -0.546712 )
+transform = Transform3D( 8.8914e-09, 0.214508, 0.0108223, -0.0745865, 2.58449e-08, 1.11142e-09, 0, -0.0314575, 0.0737971, -0.541062, 3.114, -0.546712 )
 
 [node name="Particles" type="Particles" parent="Exhaust/ExhaustPort" index="0"]
 amount = 20
@@ -95,43 +95,43 @@ process_material = SubResource( 28 )
 draw_pass_1 = SubResource( 29 )
 
 [node name="TopGear1" parent="." index="14"]
-transform = Transform( -0.338352, 0.0789948, -0.228015, -0.232249, 2.47709e-08, 0.344635, 0.0655083, 0.408011, 0.0441458, -0.0523701, 3.72304, 0.272905 )
+transform = Transform3D( -0.338352, 0.0789948, -0.228015, -0.232249, 2.47709e-08, 0.344635, 0.0655083, 0.408011, 0.0441458, -0.0523701, 3.72304, 0.272905 )
 
 [node name="BackGear2" parent="." index="16"]
-transform = Transform( -0.342424, 0.0470063, -0.230758, -0.232249, 4.95419e-08, 0.344635, 0.0389811, 0.412921, 0.0262691, -1.62208, 2.13825, 0.431893 )
+transform = Transform3D( -0.342424, 0.0470063, -0.230758, -0.232249, 4.95419e-08, 0.344635, 0.0389811, 0.412921, 0.0262691, -1.62208, 2.13825, 0.431893 )
 
 [node name="Cube020" parent="." index="21"]
-transform = Transform( 0.137442, 0, -0.000574552, 0, 0.137459, 0, 0.00216299, 0, 0.0365084, 3.44282, -0.122858, -0.00391411 )
+transform = Transform3D( 0.137442, 0, -0.000574552, 0, 0.137459, 0, 0.00216299, 0, 0.0365084, 3.44282, -0.122858, -0.00391411 )
 
 [node name="BackRotor" parent="Empty" index="0"]
-transform = Transform( -0.0372144, 0.00560886, 0.00209048, -0.359694, -0.000580301, 0.0202053, -0.892865, 3.36098e-10, -0.00822691, -0.0012815, -0.0184255, 0.0267408 )
+transform = Transform3D( -0.0372144, 0.00560886, 0.00209048, -0.359694, -0.000580301, 0.0202053, -0.892865, 3.36098e-10, -0.00822691, -0.0012815, -0.0184255, 0.0267408 )
 
 [node name="Rope" parent="." index="36"]
-transform = Transform( 0.486493, 0.0083327, 0.557114, 0, 0.999939, -0.00818225, -0.557148, 0.00727597, 0.486463, -0.0475276, 1.07621, -0.317458 )
+transform = Transform3D( 0.486493, 0.0083327, 0.557114, 0, 0.999939, -0.00818225, -0.557148, 0.00727597, 0.486463, -0.0475276, 1.07621, -0.317458 )
 
 [node name="WaterTank002" parent="." index="37"]
-transform = Transform( 0.486493, 0.0083327, 0.557114, 0, 0.999939, -0.00818225, -0.557148, 0.00727597, 0.486463, -0.0475276, 1.07621, -0.317458 )
+transform = Transform3D( 0.486493, 0.0083327, 0.557114, 0, 0.999939, -0.00818225, -0.557148, 0.00727597, 0.486463, -0.0475276, 1.07621, -0.317458 )
 
 [node name="AnimationPlayer" parent="." index="38"]
 autoplay = "gyrocopterAnimation"
 anims/gyrocopterAnimation = ExtResource( 3 )
 
 [node name="mirror_collectible0" parent="." index="39" instance=ExtResource( 5 )]
-transform = Transform( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, 0.351738, 1.15691, 0.924658 )
+transform = Transform3D( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, 0.351738, 1.15691, 0.924658 )
 visible = false
 
 [node name="mirror_collectible1" parent="." index="40" instance=ExtResource( 5 )]
-transform = Transform( -8.54989e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, 0.173651, 1.15215, 1.09387 )
+transform = Transform3D( -8.54989e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, 0.173651, 1.15215, 1.09387 )
 visible = false
 
 [node name="mirror_collectible2" parent="." index="41" instance=ExtResource( 5 )]
-transform = Transform( -8.54987e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.0130281, 1.15215, 1.24327 )
+transform = Transform3D( -8.54987e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.0130281, 1.15215, 1.24327 )
 visible = false
 
 [node name="mirror_collectible3" parent="." index="42" instance=ExtResource( 5 )]
-transform = Transform( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.108579, 1.15215, 1.41328 )
+transform = Transform3D( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.108579, 1.15215, 1.41328 )
 visible = false
 
 [node name="mirror_collectible4" parent="." index="43" instance=ExtResource( 5 )]
-transform = Transform( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.193862, 1.15215, 1.58724 )
+transform = Transform3D( -8.54988e-09, -0.195598, 0.77572, 0.8, -3.49691e-08, 2.98433e-15, 3.39078e-08, 0.77572, 0.195598, -0.193862, 1.15215, 1.58724 )
 visible = false
